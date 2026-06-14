@@ -257,6 +257,8 @@ type
     FbRememberLog, FbRememberAppend: boolean;
     FsRememberRenameLogFilename: string;
     FLog: TStringList;  // 替代 TStringList（方法完全兼容）
+    FNameSelStart: Integer;
+    FExtSelStart:  Integer;
     property Commands: TFormCommands read FCommands implements IFormCommands;
     procedure RestoreProperties(Sender: TObject);
     procedure SetConfigurationState(bConfigurationSaved: boolean);
@@ -1526,20 +1528,31 @@ end;
 procedure TfrmMultiRename.InsertMask(const Mask: string; edChoose: TComboBox);
 var
   sTmp, sInitialString: string;
-  I: integer;
+  I, iInsertAt: integer;
 begin
   sInitialString := edChoose.Text;
-  if edChoose.SelLength > 0 then
-    edChoose.SelText := Mask // Replace selected text
+
+  // 取弹出菜单前保存的光标位置（失焦后 Win32 会全选，SelLength 不可信）
+  if edChoose = cbName then
+    iInsertAt := FNameSelStart
+  else if edChoose = cbExt then
+    iInsertAt := FExtSelStart
   else
-  begin
-    sTmp := edChoose.Text;
-    I := edChoose.SelStart + 1;  // Insert on current position
-    UTF8Insert(Mask, sTmp, I);
-    Inc(I, UTF8Length(Mask));
-    edChoose.Text := sTmp;
-    edChoose.SelStart := I - 1;
-  end;
+    iInsertAt := edChoose.SelStart + edChoose.SelLength; // 其他控件用末尾
+
+  sTmp := edChoose.Text;
+  I := iInsertAt + 1;
+  UTF8Insert(Mask, sTmp, I);
+  Inc(I, UTF8Length(Mask));
+  edChoose.Text := sTmp;
+  edChoose.SelStart := I - 1;
+
+  // 更新保存的位置，供下次连续插入使用
+  if edChoose = cbName then
+    FNameSelStart := I - 1
+  else if edChoose = cbExt then
+    FExtSelStart  := I - 1;
+
   if sInitialString <> edChoose.Text then
     cbNameStyleChange(edChoose);
 end;
@@ -2796,6 +2809,8 @@ end;
 { TfrmMultiRename.cm_AnyNameMask }
 procedure TfrmMultiRename.cm_AnyNameMask(const {%H-}Params: array of string);
 begin
+  FNameSelStart := cbName.SelStart + cbName.SelLength;
+  FExtSelStart  := cbExt.SelStart  + cbExt.SelLength;
   pmFloatingMainMaskMenu.Items.Clear;
   PopulateFilenameMenu(pmFloatingMainMaskMenu);
   PopupDynamicMenuAtThisControl(pmFloatingMainMaskMenu, btnAnyNameMask);
@@ -2813,6 +2828,8 @@ end;
 { TfrmMultiRename.cm_AnyExtMask }
 procedure TfrmMultiRename.cm_AnyExtMask(const {%H-}Params: array of string);
 begin
+  FNameSelStart := cbName.SelStart + cbName.SelLength;
+  FExtSelStart  := cbExt.SelStart  + cbExt.SelLength;
   pmFloatingMainMaskMenu.Items.Clear;
   PopulateExtensionMenu(pmFloatingMainMaskMenu);
   PopupDynamicMenuAtThisControl(pmFloatingMainMaskMenu, btnAnyExtMask);
