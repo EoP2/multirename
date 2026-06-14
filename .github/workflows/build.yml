@@ -1,0 +1,86 @@
+name: Build MultiRename
+
+on:
+  workflow_dispatch:
+
+env:
+  DC_BASE: https://raw.githubusercontent.com/doublecmd/doublecmd/master
+
+jobs:
+
+  build-windows:
+    name: Windows x86_64
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fix uRegExprW filename case
+        shell: pwsh
+        run: |
+          $lower = "src/vendor/dc_src/uregexprw.pas"
+          $upper = "src/vendor/dc_src/uRegExprW.pas"
+          if (Test-Path $lower) {
+            Copy-Item $lower $upper -Force
+            Remove-Item $lower -Force
+            Write-Host "Renamed uregexprw.pas -> uRegExprW.pas"
+          } else {
+            Write-Host "uRegExprW.pas already correctly named (or missing)"
+          }
+
+      - name: Install Lazarus
+        uses: doublecmd/lazarus-install@win
+        with:
+          lazarus-version: "stable"
+
+      - name: Prepare vendor
+        shell: pwsh
+        run: |
+          $B = $env:DC_BASE
+          function Fetch($url, $out) {
+            if (-not (Test-Path $out)) {
+              New-Item -ItemType Directory -Force (Split-Path $out) | Out-Null
+              Invoke-WebRequest $url -OutFile $out
+            }
+          }
+
+          Fetch "$B/components/doublecmd/doublecmd_common.lpk" "src/vendor/doublecmd/doublecmd_common.lpk"
+          foreach ($f in @("dcclassesutf8.pas","dcosutils.pas","dcstrutils.pas","dcbasictypes.pas",
+              "dcfileattributes.pas","dcconvertencoding.pas","dcdatetimeutils.pas","dcxmlconfig.pas",
+              "dcprocessutf8.pas","dcunicodeutils.pas","dcstringhashlistutf8.pas",
+              "dcjsonconfig.pas","dcclasses.pas","dcntfslinks.pas","dcwindows.pas")) {
+            Fetch "$B/components/doublecmd/$f" "src/vendor/doublecmd/$f"
+          }
+
+          Fetch "$B/components/KASToolBar/kascomp.lpk" "src/vendor/KASToolBar/kascomp.lpk"
+          foreach ($f in @("kasbutton.pas","kastoolpanel.pas","kastoolbar.pas","kasprogressbar.pas","dwtaskbarlist.pas",
+              "kaspathedit.pas","kastoolitems.pas","kascombobox.pas","kascdedit.pas",
+              "kasstatusbar.pas","kasbuttonpanel.pas","kascomctrls.pas","kascontrols.pas")) {
+            Fetch "$B/components/KASToolBar/$f" "src/vendor/KASToolBar/$f"
+          }
+
+          foreach ($f in @("fmultirename.lfm","fmultirenamewait.pas","fmultirenamewait.lfm",
+              "fselecttextrange.pas","fselecttextrange.lfm","fselectpathrange.pas","fselectpathrange.lfm",
+              "fsortanything.pas","fsortanything.lfm","uregexpra.pas",
+              "uformcommands.pas","uhotkeymanager.pas","uconvencoding.pas","udebug.pas")) {
+            Fetch "$B/src/$f" "src/vendor/dc_src/$f"
+          }
+          # 无条件下载为大写文件名，并删除小写版本（无论是否已存在）
+          New-Item -ItemType Directory -Force "src/vendor/dc_src" | Out-Null
+          Invoke-WebRequest "$B/src/uregexprw.pas" -OutFile "src/vendor/dc_src/uRegExprW.pas"
+          Remove-Item -Force "src/vendor/dc_src/uregexprw.pas" -ErrorAction SilentlyContinue
+
+          Fetch "$B/src/platform/ukeyboard.pas" "src/vendor/dc_src/ukeyboard.pas"
+          Copy-Item "src/vendor/dc_src/fmultirename.lfm" "src/fMultiRename.lfm" -Force
+
+      - name: Install DC packages
+        run: |
+          lazbuild src\vendor\doublecmd\doublecmd_common.lpk
+          lazbuild src\vendor\KASToolBar\kascomp.lpk
+
+      - name: Build
+        run: lazbuild multirename.lpi --bm=Release --widgetset=win32
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: multirename-windows-x64
+          path: multirename.exe
