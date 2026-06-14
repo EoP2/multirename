@@ -241,14 +241,14 @@ object frmMultiRename: TfrmMultiRename
         Left = 0
         Height = 59
         Top = 214
-        Width = 120
+        Width = 100
         Anchors = [akTop, akLeft]
         AutoSize = True
         BorderSpacing.Top = 4
         Caption = '排序'
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.TopBottomSpacing = 2
-        ClientWidth = 118
+        ClientWidth = 98
         ParentFont = False
         TabOrder = 2
         object cmbAddSort: TComboBox
@@ -259,7 +259,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 4
           Height = 35
           Top = 2
-          Width = 110
+          Width = 90
           Anchors = [akTop, akLeft, akRight]
           DropDownCount = 8
           ItemHeight = 0
