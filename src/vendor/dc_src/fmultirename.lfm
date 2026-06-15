@@ -271,6 +271,7 @@ object frmMultiRename: TfrmMultiRename
       end
       object gbPresets: TGroupBox
         AnchorSideLeft.Control = gbAddSort
+        AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbMaska
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
