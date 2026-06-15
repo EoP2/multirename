@@ -215,11 +215,10 @@ object frmMultiRename: TfrmMultiRename
         end
         object cbExt: TComboBox
           AnchorSideLeft.Control = cbName
-          AnchorSideLeft.Side = asrRight
+          AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = lbName
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbMaska
-          AnchorSideRight.Side = asrLeft
           Left = 274
           Height = 35
           Top = 19
