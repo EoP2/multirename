@@ -220,7 +220,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbMaska
           AnchorSideRight.Side = asrBottom
-          Left = 244
+          Left = 274
           Height = 35
           Top = 19
           Width = 240
