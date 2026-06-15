@@ -247,7 +247,7 @@ object frmMultiRename: TfrmMultiRename
         BorderSpacing.Top = 4
         Caption = '排序'
         ChildSizing.LeftRightSpacing = 4
-        ChildSizing.TopBottomSpacing = 2
+        ChildSizing.TopBottomSpacing = 200
         ClientWidth = 118
         ParentFont = False
         TabOrder = 2
