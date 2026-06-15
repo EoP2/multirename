@@ -243,6 +243,7 @@ object frmMultiRename: TfrmMultiRename
         Top = 214
         Width = 120
         Anchors = [akTop, akLeft]
+        Align = alLeft
         AutoSize = True
         BorderSpacing.Top = 4
         Caption = '排序'
@@ -288,6 +289,7 @@ object frmMultiRename: TfrmMultiRename
         Top = 214
         Width = 120
         Anchors = [akTop, akLeft, akRight]
+        Align = alClient
         AutoSize = True
         BorderSpacing.Top = 4
         Caption = '预设'
