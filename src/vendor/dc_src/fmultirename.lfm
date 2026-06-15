@@ -272,7 +272,7 @@ object frmMultiRename: TfrmMultiRename
       object spltSortSplitter: TSplitter
         Left = 130
         Height = 59
-        Top = 0
+        Top = 214
         Width = 5
         ResizeStyle = rsLine
       end
