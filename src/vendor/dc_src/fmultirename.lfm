@@ -201,7 +201,8 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideLeft.Control = gbMaska
           AnchorSideTop.Control = lbName
           AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = cbExt
+          AnchorSideRight.Control = gbMaska
+          AnchorSideRight.Side = asrBottom
           Left = 4
           Height = 35
           Top = 19
@@ -214,15 +215,14 @@ object frmMultiRename: TfrmMultiRename
           TabOrder = 0
         end
         object cbExt: TComboBox
-          AnchorSideLeft.Control = cbName
-          AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = lbName
+          AnchorSideLeft.Control = gbMaska
+          AnchorSideTop.Control = lbExt
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbMaska
           AnchorSideRight.Side = asrBottom
-          Left = 324
+          Left = 4
           Height = 35
-          Top = 23
+          Top = 114
           Width = 240
           Anchors = [akTop, akLeft, akRight]
           AutoSelect = False
@@ -236,12 +236,13 @@ object frmMultiRename: TfrmMultiRename
         AnchorSideLeft.Control = pnlOptionsLeft
         AnchorSideTop.Control = gbMaska
         AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = gbPresets
+        AnchorSideRight.Control = pnlOptionsLeft
+        AnchorSideRight.Side = asrBottom
         Left = 0
         Height = 59
         Top = 214
         Width = 120
-        Anchors = [akTop, akLeft, akRight]
+        Anchors = [akTop, akLeft]
         AutoSize = True
         BorderSpacing.Top = 4
         Caption = '排序'
