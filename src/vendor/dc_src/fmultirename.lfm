@@ -242,7 +242,7 @@ object frmMultiRename: TfrmMultiRename
         Height = 59
         Top = 214
         Width = 120
-        Anchors = [akTop, akLeft]
+        Anchors = [akTop, akLeft, akRight]
         AutoSize = True
         BorderSpacing.Top = 4
         Caption = '排序'
