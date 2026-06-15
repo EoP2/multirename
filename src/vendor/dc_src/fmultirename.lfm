@@ -244,7 +244,6 @@ object frmMultiRename: TfrmMultiRename
         Width = 120
         Anchors = [akTop, akLeft]
         Align = alLeft
-        AutoSize = True
         BorderSpacing.Top = 4
         Caption = '排序'
         ChildSizing.LeftRightSpacing = 4
@@ -275,7 +274,6 @@ object frmMultiRename: TfrmMultiRename
         Height = 59
         Top = 214
         Width = 5
-        Splitter.Align := alLeft;
         ResizeStyle = rsLine
       end
       object gbPresets: TGroupBox
