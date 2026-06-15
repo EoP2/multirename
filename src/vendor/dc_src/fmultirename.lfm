@@ -201,8 +201,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideLeft.Control = gbMaska
           AnchorSideTop.Control = lbName
           AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = gbMaska
-          AnchorSideRight.Side = asrBottom
+          AnchorSideRight.Control = cbExt
           Left = 4
           Height = 35
           Top = 19
@@ -215,14 +214,15 @@ object frmMultiRename: TfrmMultiRename
           TabOrder = 0
         end
         object cbExt: TComboBox
-          AnchorSideLeft.Control = gbMaska
-          AnchorSideTop.Control = lbExt
+          AnchorSideLeft.Control = cbName
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = lbName
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbMaska
           AnchorSideRight.Side = asrBottom
           Left = 4
           Height = 35
-          Top = 114
+          Top = 19
           Width = 240
           Anchors = [akTop, akLeft, akRight]
           AutoSelect = False
