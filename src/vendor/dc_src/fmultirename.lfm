@@ -98,6 +98,7 @@ object frmMultiRename: TfrmMultiRename
         Width = 250
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
+        Align = alTop
         Caption = '掩码'
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.HorizontalSpacing = 2
@@ -243,10 +244,11 @@ object frmMultiRename: TfrmMultiRename
         Top = 214
         Width = 120
         Anchors = [akTop, akLeft]
+        Align = alLeft
         BorderSpacing.Top = 4
         Caption = '排序'
         ChildSizing.LeftRightSpacing = 4
-        ChildSizing.TopBottomSpacing = 2
+        ChildSizing.TopBottomSpacing = 200
         ClientWidth = 118
         ParentFont = False
         TabOrder = 2
@@ -287,6 +289,7 @@ object frmMultiRename: TfrmMultiRename
         Top = 214
         Width = 120
         Anchors = [akTop, akLeft, akRight]
+        Align = alClient
         BorderSpacing.Top = 4
         Caption = '预设'
         ChildSizing.LeftRightSpacing = 4
