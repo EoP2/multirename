@@ -275,6 +275,7 @@ object frmMultiRename: TfrmMultiRename
         Height = 59
         Top = 214
         Width = 5
+        Splitter.Align := alLeft;
         ResizeStyle = rsLine
       end
       object gbPresets: TGroupBox
