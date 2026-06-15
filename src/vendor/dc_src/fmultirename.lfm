@@ -270,7 +270,7 @@ object frmMultiRename: TfrmMultiRename
         end
       end
       object gbPresets: TGroupBox
-        AnchorSideLeft.Control = pnlOptionsLeft
+        AnchorSideLeft.Control = gbAddSort
         AnchorSideTop.Control = gbMaska
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
@@ -279,7 +279,7 @@ object frmMultiRename: TfrmMultiRename
         Height = 59
         Top = 214
         Width = 120
-        Anchors = [akTop, akRight]
+        Anchors = [akTop, akLeft, akRight]
         AutoSize = True
         BorderSpacing.Top = 4
         Caption = '预设'
