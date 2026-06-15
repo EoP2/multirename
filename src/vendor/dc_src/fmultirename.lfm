@@ -237,7 +237,6 @@ object frmMultiRename: TfrmMultiRename
         AnchorSideTop.Control = gbMaska
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = gbPresets
-        AnchorSideRight.Side = asrBottom
         Left = 0
         Height = 59
         Top = 214
@@ -271,7 +270,6 @@ object frmMultiRename: TfrmMultiRename
       end
       object gbPresets: TGroupBox
         AnchorSideLeft.Control = gbAddSort
-        AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbMaska
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
