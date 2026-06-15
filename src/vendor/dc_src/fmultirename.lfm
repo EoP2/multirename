@@ -269,7 +269,7 @@ object frmMultiRename: TfrmMultiRename
           TabOrder = 0
         end
       end
-      object spltMainSplitter: TSplitter
+      object spltSortSplitter: TSplitter
         Left = 130
         Height = 59
         Top = 0
