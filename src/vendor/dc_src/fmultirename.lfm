@@ -83,6 +83,11 @@ object frmMultiRename: TfrmMultiRename
       Width = 250
       Align = alLeft
       BevelOuter = bvNone
+      Layout = cclLeftToRightThenTopToBottom
+      ControlsPerLine = 2
+      EnlargeHorizontal = crsScaleChilds
+      ShrinkHorizontal = crsScaleChilds
+      HorizontalSpacing = 4
       ClientHeight = 275
       ClientWidth = 250
       ParentFont = False
@@ -96,9 +101,9 @@ object frmMultiRename: TfrmMultiRename
         Height = 210
         Top = 0
         Width = 250
-        Anchors = [akTop, akLeft, akRight]
+        Anchors = []
         AutoSize = True
-        Caption = '文件名组(&N)'
+        Caption = '文件名(&N)'
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.HorizontalSpacing = 2
         ChildSizing.VerticalSpacing = 2
@@ -134,7 +139,7 @@ object frmMultiRename: TfrmMultiRename
           Height = 35
           Top = 37
           Width = 23
-          Anchors = [akTop, akLeft, akBottom]
+          Anchors = []
           TabOrder = 1
           TabStop = True
         end
@@ -165,11 +170,10 @@ object frmMultiRename: TfrmMultiRename
         Height = 210
         Top = 0
         Width = 250
-        Anchors = [akTop, akLeft, akRight]
+        Anchors = []
         AutoSize = True
-        Caption = '扩展名组(&E)'
+        Caption = '扩展名(&E)'
         ChildSizing.LeftRightSpacing = 4
-        ChildSizing.TopBottomSpacing = 2
         ChildSizing.HorizontalSpacing = 2
         ChildSizing.VerticalSpacing = 2
         ClientHeight = 190
@@ -236,7 +240,7 @@ object frmMultiRename: TfrmMultiRename
         Height = 59
         Top = 214
         Width = 120
-        Anchors = [akTop, akLeft]
+        Anchors = []
         AutoSize = True
         BorderSpacing.Top = 4
         Caption = '排序'
@@ -274,7 +278,7 @@ object frmMultiRename: TfrmMultiRename
         Height = 59
         Top = 214
         Width = 120
-        Anchors = [akTop, akLeft, akRight]
+        Anchors = []
         AutoSize = True
         BorderSpacing.Top = 4
         Caption = '预设'
