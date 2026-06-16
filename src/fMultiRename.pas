@@ -147,12 +147,11 @@ type
     StringGrid: TStringGrid;
     pnlOptions: TPanel;
     pnlOptionsLeft: TPanel;
-    gbMaska: TGroupBox;
-    lbName: TLabel;
+    gbName: TGroupBox;
     cbName: TComboBox;
     btnAnyNameMask: TKASButton;
     cbNameMaskStyle: TComboBox;
-    lbExt: TLabel;
+    gbExt: TGroupBox;
     cbExt: TComboBox;
     btnAnyExtMask: TKASButton;
     cmbExtensionStyle: TComboBox;
@@ -833,7 +832,7 @@ end;
 { TfrmMultiRename.cbPresetsCloseUp }
 procedure TfrmMultiRename.cbPresetsCloseUp(Sender: TObject);
 begin
-  if cbName.Enabled and gbMaska.Enabled then ActiveControl := cbName;
+  if cbName.Enabled and gbName.Enabled then ActiveControl := cbName;
   cbName.SelStart := UTF8Length(cbName.Text);
 end;
 
@@ -1804,7 +1803,8 @@ begin
   begin
     FNames.Assign(AFileList);
 
-    gbMaska.Enabled := False;
+    gbName.Enabled := False;
+    gbExt.Enabled := False;
     gbPresets.Enabled := False;
     gbCounter.Enabled := False;
 
@@ -2090,7 +2090,8 @@ begin
 
   cbPresets.Text := '';
   FNames.Clear;
-  gbMaska.Enabled := True;
+  gbName.Enabled := True;
+  gbExt.Enabled := True;
   gbPresets.Enabled := True;
   cbPresets.ItemIndex := 0;
   gbCounter.Enabled := True;
@@ -2632,7 +2633,7 @@ begin
         SetConfigurationState(CONFIG_SAVED);
 
         //8. If we're from anything else the preset droplist itself, let's go to focus on the name ready to edit it if necessary..
-        if (ActiveControl <> cbPresets) and (ActiveControl <> cbName) and (cbName.Enabled and gbMaska.Enabled) then
+        if (ActiveControl <> cbPresets) and (ActiveControl <> cbName) and (cbName.Enabled and gbName.Enabled) then
         begin
           ActiveControl := cbName;
           cbName.SelStart := UTF8Length(cbName.Text);
