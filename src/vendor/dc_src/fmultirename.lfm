@@ -158,6 +158,7 @@ object frmMultiRename: TfrmMultiRename
       object gbExt: TGroupBox
         AnchorSideLeft.Control = pnlOptionsLeft
         AnchorSideTop.Control = gbName
+        AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
         AnchorSideRight.Side = asrBottom
         Left = 0
