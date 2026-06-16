@@ -141,7 +141,6 @@ object frmMultiRename: TfrmMultiRename
         object cbName: TComboBox
           AnchorSideLeft.Control = gbName
           AnchorSideTop.Control = gbName
-          AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbName
           AnchorSideRight.Side = asrBottom
           Left = 4
@@ -174,7 +173,7 @@ object frmMultiRename: TfrmMultiRename
         ClientHeight = 190
         ClientWidth = 248
         ParentFont = False
-        TabOrder = 0
+        TabOrder = 1
         object cmbExtensionStyle: TComboBox
           AnchorSideLeft.Control = btnAnyExtMask
           AnchorSideLeft.Side = asrBottom
@@ -211,7 +210,6 @@ object frmMultiRename: TfrmMultiRename
         object cbExt: TComboBox
           AnchorSideLeft.Control = gbExt
           AnchorSideTop.Control = gbExt
-          AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbExt
           AnchorSideRight.Side = asrBottom
           Left = 4
@@ -284,7 +282,7 @@ object frmMultiRename: TfrmMultiRename
         ClientHeight = 39
         ClientWidth = 118
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 3
         object cbPresets: TComboBox
           AnchorSideLeft.Control = gbPresets
           AnchorSideTop.Control = gbPresets
