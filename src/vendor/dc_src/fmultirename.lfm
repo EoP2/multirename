@@ -83,11 +83,6 @@ object frmMultiRename: TfrmMultiRename
       Width = 250
       Align = alLeft
       BevelOuter = bvNone
-      ChildSizing.Layout = cclLeftToRightThenTopToBottom
-      ChildSizing.ControlsPerLine = 2
-      ChildSizing.EnlargeHorizontal = crsScaleChilds
-      ChildSizing.ShrinkHorizontal = crsScaleChilds
-      ChildSizing.HorizontalSpacing = 4
       ClientHeight = 275
       ClientWidth = 250
       ParentFont = False
@@ -139,7 +134,7 @@ object frmMultiRename: TfrmMultiRename
           Height = 35
           Top = 37
           Width = 23
-          Anchors = []
+          Anchors = [akTop, akLeft, akBottom]
           TabOrder = 1
           TabStop = True
         end
@@ -235,12 +230,12 @@ object frmMultiRename: TfrmMultiRename
         AnchorSideTop.Control = gbExt
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
-        AnchorSideRight.Side = asrCenter
+        AnchorSideRight.Side = asrBottom
         Left = 0
         Height = 59
         Top = 214
         Width = 120
-        Anchors = [akTop, akLeft, akRight]
+        Anchors = [akTop, akLeft]
         AutoSize = True
         BorderSpacing.Top = 4
         Caption = '排序'
@@ -268,8 +263,8 @@ object frmMultiRename: TfrmMultiRename
         end
       end
       object gbPresets: TGroupBox
-        AnchorSideLeft.Control = pnlOptionsLeft
-        AnchorSideLeft.Side = asrCenter
+        AnchorSideLeft.Control = gbAddSort
+        AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbExt
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
