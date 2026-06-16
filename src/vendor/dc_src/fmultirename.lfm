@@ -87,7 +87,7 @@ object frmMultiRename: TfrmMultiRename
       ClientWidth = 250
       ParentFont = False
       TabOrder = 0
-      object gbMaska: TGroupBox
+      object gbName: TGroupBox
         AnchorSideLeft.Control = pnlOptionsLeft
         AnchorSideTop.Control = pnlOptionsLeft
         AnchorSideRight.Control = pnlOptionsLeft
@@ -98,7 +98,8 @@ object frmMultiRename: TfrmMultiRename
         Width = 250
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
-        Caption = '掩码'
+        Caption = '文件名组(&N)'
+        FocusControl = cbName
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.HorizontalSpacing = 2
         ChildSizing.VerticalSpacing = 2
@@ -106,42 +107,16 @@ object frmMultiRename: TfrmMultiRename
         ClientWidth = 248
         ParentFont = False
         TabOrder = 0
-        object lbName: TLabel
-          AnchorSideLeft.Control = gbMaska
-          AnchorSideTop.Control = gbMaska
-          AnchorSideBottom.Control = cbName
-          Left = 4
-          Height = 17
-          Top = 0
-          Width = 61
-          Caption = '文件名(&N)'
-          FocusControl = cbName
-          ParentColor = False
-          ParentFont = False
-        end
-        object lbExt: TLabel
-          AnchorSideLeft.Control = gbMaska
-          AnchorSideTop.Control = cbNameMaskStyle
-          AnchorSideTop.Side = asrBottom
-          Left = 4
-          Height = 17
-          Top = 95
-          Width = 60
-          Caption = '扩展名(&E)'
-          FocusControl = cbExt
-          ParentColor = False
-          ParentFont = False
-        end
         object cbNameMaskStyle: TComboBox
           AnchorSideLeft.Control = btnAnyNameMask
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = cbName
           AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = gbMaska
+          AnchorSideRight.Control = gbName
           AnchorSideRight.Side = asrBottom
           Left = 29
           Height = 35
-          Top = 56
+          Top = 37
           Width = 215
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Bottom = 4
@@ -151,17 +126,68 @@ object frmMultiRename: TfrmMultiRename
           Style = csDropDownList
           TabOrder = 2
         end
+        object btnAnyNameMask: TKASButton
+          AnchorSideLeft.Control = gbName
+          AnchorSideTop.Control = cbNameMaskStyle
+          AnchorSideBottom.Control = cbNameMaskStyle
+          AnchorSideBottom.Side = asrBottom
+          Left = 4
+          Height = 35
+          Top = 37
+          Width = 23
+          Anchors = [akTop, akLeft, akBottom]
+          TabOrder = 1
+          TabStop = True
+        end
+        object cbName: TComboBox
+          AnchorSideLeft.Control = gbName
+          AnchorSideTop.Control = gbName
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = gbName
+          AnchorSideRight.Side = asrBottom
+          Left = 4
+          Height = 35
+          Top = 0
+          Width = 240
+          Anchors = [akTop, akLeft, akRight]
+          AutoSelect = False
+          ItemHeight = 0
+          OnChange = cbNameStyleChange
+          ParentFont = False
+          TabOrder = 0
+        end
+      end
+      object gbExt: TGroupBox
+        AnchorSideLeft.Control = pnlOptionsLeft
+        AnchorSideTop.Control = pnlOptionsLeft
+        AnchorSideRight.Control = pnlOptionsLeft
+        AnchorSideRight.Side = asrBottom
+        Left = 0
+        Height = 210
+        Top = 0
+        Width = 250
+        Anchors = [akTop, akLeft, akRight]
+        AutoSize = True
+        Caption = '扩展名组(&E)'
+        FocusControl = cbExt
+        ChildSizing.LeftRightSpacing = 4
+        ChildSizing.HorizontalSpacing = 2
+        ChildSizing.VerticalSpacing = 2
+        ClientHeight = 190
+        ClientWidth = 248
+        ParentFont = False
+        TabOrder = 0
         object cmbExtensionStyle: TComboBox
           AnchorSideLeft.Control = btnAnyExtMask
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = cbExt
           AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = gbMaska
+          AnchorSideRight.Control = gbExt
           AnchorSideRight.Side = asrBottom
           AnchorSideBottom.Side = asrBottom
           Left = 29
           Height = 35
-          Top = 151
+          Top = 37
           Width = 215
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Bottom = 4
@@ -171,58 +197,28 @@ object frmMultiRename: TfrmMultiRename
           Style = csDropDownList
           TabOrder = 5
         end
-        object btnAnyNameMask: TKASButton
-          AnchorSideLeft.Control = gbMaska
-          AnchorSideTop.Control = cbNameMaskStyle
-          AnchorSideBottom.Control = cbNameMaskStyle
-          AnchorSideBottom.Side = asrBottom
-          Left = 4
-          Height = 35
-          Top = 56
-          Width = 23
-          Anchors = [akTop, akLeft, akBottom]
-          TabOrder = 1
-          TabStop = True
-        end
         object btnAnyExtMask: TKASButton
-          AnchorSideLeft.Control = gbMaska
+          AnchorSideLeft.Control = gbExt
           AnchorSideTop.Control = cmbExtensionStyle
           AnchorSideBottom.Control = cmbExtensionStyle
           AnchorSideBottom.Side = asrBottom
           Left = 4
           Height = 35
-          Top = 151
+          Top = 37
           Width = 23
           Anchors = [akTop, akLeft, akBottom]
           TabOrder = 4
           TabStop = True
         end
-        object cbName: TComboBox
-          AnchorSideLeft.Control = gbMaska
-          AnchorSideTop.Control = lbName
-          AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = gbMaska
-          AnchorSideRight.Side = asrBottom
-          Left = 4
-          Height = 35
-          Top = 19
-          Width = 240
-          Anchors = [akTop, akLeft, akRight]
-          AutoSelect = False
-          ItemHeight = 0
-          OnChange = cbNameStyleChange
-          ParentFont = False
-          TabOrder = 0
-        end
         object cbExt: TComboBox
-          AnchorSideLeft.Control = gbMaska
-          AnchorSideTop.Control = lbExt
+          AnchorSideLeft.Control = gbExt
+          AnchorSideTop.Control = gbExt
           AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = gbMaska
+          AnchorSideRight.Control = gbExt
           AnchorSideRight.Side = asrBottom
           Left = 4
           Height = 35
-          Top = 114
+          Top = 0
           Width = 240
           Anchors = [akTop, akLeft, akRight]
           AutoSelect = False
@@ -234,7 +230,7 @@ object frmMultiRename: TfrmMultiRename
       end
       object gbAddSort: TGroupBox
         AnchorSideLeft.Control = pnlOptionsLeft
-        AnchorSideTop.Control = gbMaska
+        AnchorSideTop.Control = gbExt
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
         AnchorSideRight.Side = asrBottom
@@ -272,7 +268,7 @@ object frmMultiRename: TfrmMultiRename
       object gbPresets: TGroupBox
         AnchorSideLeft.Control = gbAddSort
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = gbMaska
+        AnchorSideTop.Control = gbExt
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
         AnchorSideRight.Side = asrBottom
