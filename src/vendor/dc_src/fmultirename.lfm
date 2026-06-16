@@ -99,7 +99,6 @@ object frmMultiRename: TfrmMultiRename
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
         Caption = '文件名组(&N)'
-        FocusControl = cbName
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.HorizontalSpacing = 2
         ChildSizing.VerticalSpacing = 2
@@ -169,7 +168,6 @@ object frmMultiRename: TfrmMultiRename
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
         Caption = '扩展名组(&E)'
-        FocusControl = cbExt
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.HorizontalSpacing = 2
         ChildSizing.VerticalSpacing = 2
