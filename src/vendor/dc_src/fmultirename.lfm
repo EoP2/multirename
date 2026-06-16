@@ -229,8 +229,6 @@ object frmMultiRename: TfrmMultiRename
         AnchorSideLeft.Control = pnlOptionsLeft
         AnchorSideTop.Control = gbExt
         AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = pnlOptionsLeft
-        AnchorSideRight.Side = asrBottom
         Left = 0
         Height = 59
         Top = 214
