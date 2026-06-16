@@ -257,7 +257,7 @@ object frmMultiRename: TfrmMultiRename
           Height = 35
           Top = 2
           Width = 110
-          Anchors = [akTop, akLeft, akRight]
+          Anchors = [akTop, akLeft]
           DropDownCount = 8
           ItemHeight = 0
           OnChange = cmbAddSortChange
@@ -273,6 +273,7 @@ object frmMultiRename: TfrmMultiRename
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
         AnchorSideRight.Side = asrBottom
+        Left = 130
         Height = 59
         Top = 214
         Width = 120
