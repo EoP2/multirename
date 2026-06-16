@@ -90,11 +90,12 @@ object frmMultiRename: TfrmMultiRename
       object gbName: TGroupBox
         AnchorSideLeft.Control = pnlOptionsLeft
         AnchorSideTop.Control = pnlOptionsLeft
+        AnchorSideRight.Control = gbExt
         Left = 0
         Height = 210
         Top = 0
         Width = 250
-        Anchors = [akTop, akLeft]
+        Anchors = [akTop, akLeft, akRight]
         AutoSize = True
         Caption = '文件名(&N)'
         ChildSizing.LeftRightSpacing = 4
@@ -154,8 +155,6 @@ object frmMultiRename: TfrmMultiRename
         end
       end
       object gbExt: TGroupBox
-        AnchorSideLeft.Control = gbName
-        AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = pnlOptionsLeft
         AnchorSideRight.Control = pnlOptionsLeft
         AnchorSideRight.Side = asrBottom
@@ -163,7 +162,7 @@ object frmMultiRename: TfrmMultiRename
         Height = 210
         Top = 0
         Width = 250
-        Anchors = [akTop, akLeft, akRight]
+        Anchors = [akTop, akRight]
         AutoSize = True
         Caption = '扩展名(&E)'
         ChildSizing.LeftRightSpacing = 4
