@@ -101,7 +101,7 @@ object frmMultiRename: TfrmMultiRename
         Height = 210
         Top = 0
         Width = 250
-        Anchors = []
+        Anchors = [akTop, akLeft, akRight]
         AutoSize = True
         Caption = '文件名(&N)'
         ChildSizing.LeftRightSpacing = 4
@@ -170,7 +170,7 @@ object frmMultiRename: TfrmMultiRename
         Height = 210
         Top = 0
         Width = 250
-        Anchors = []
+        Anchors = [akTop, akLeft, akRight]
         AutoSize = True
         Caption = '扩展名(&E)'
         ChildSizing.LeftRightSpacing = 4
@@ -240,7 +240,7 @@ object frmMultiRename: TfrmMultiRename
         Height = 59
         Top = 214
         Width = 120
-        Anchors = []
+        Anchors = [akTop, akLeft, akRight]
         AutoSize = True
         BorderSpacing.Top = 4
         Caption = '排序'
@@ -278,7 +278,7 @@ object frmMultiRename: TfrmMultiRename
         Height = 59
         Top = 214
         Width = 120
-        Anchors = []
+        Anchors = [akTop, akLeft, akRight]
         AutoSize = True
         BorderSpacing.Top = 4
         Caption = '预设'
