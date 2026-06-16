@@ -234,7 +234,8 @@ object frmMultiRename: TfrmMultiRename
         AnchorSideLeft.Control = pnlOptionsLeft
         AnchorSideTop.Control = gbExt
         AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = gbPresets
+        AnchorSideRight.Control = pnlOptionsLeft
+        AnchorSideRight.Side = asrCenter
         Left = 0
         Height = 59
         Top = 214
@@ -257,7 +258,7 @@ object frmMultiRename: TfrmMultiRename
           Height = 35
           Top = 2
           Width = 110
-          Anchors = [akTop, akLeft]
+          Anchors = [akTop, akLeft, akRight]
           DropDownCount = 8
           ItemHeight = 0
           OnChange = cmbAddSortChange
@@ -267,8 +268,8 @@ object frmMultiRename: TfrmMultiRename
         end
       end
       object gbPresets: TGroupBox
-        AnchorSideLeft.Control = gbAddSort
-        AnchorSideLeft.Side = asrBottom
+        AnchorSideLeft.Control = pnlOptionsLeft
+        AnchorSideLeft.Side = asrCenter
         AnchorSideTop.Control = gbExt
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
