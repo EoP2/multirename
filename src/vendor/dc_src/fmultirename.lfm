@@ -98,7 +98,6 @@ object frmMultiRename: TfrmMultiRename
         Width = 250
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
-        Align = alTop
         Caption = '掩码'
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.HorizontalSpacing = 2
@@ -244,7 +243,7 @@ object frmMultiRename: TfrmMultiRename
         Top = 214
         Width = 120
         Anchors = [akTop, akLeft]
-        Align = alLeft
+        AutoSize = True
         BorderSpacing.Top = 4
         Caption = '排序'
         ChildSizing.LeftRightSpacing = 4
@@ -270,13 +269,6 @@ object frmMultiRename: TfrmMultiRename
           TabOrder = 0
         end
       end
-      object spltSortSplitter: TSplitter
-        Left = 130
-        Height = 59
-        Top = 214
-        Width = 5
-        ResizeStyle = rsLine
-      end
       object gbPresets: TGroupBox
         AnchorSideLeft.Control = gbAddSort
         AnchorSideLeft.Side = asrBottom
@@ -289,7 +281,7 @@ object frmMultiRename: TfrmMultiRename
         Top = 214
         Width = 120
         Anchors = [akTop, akLeft, akRight]
-        Align = alClient
+        AutoSize = True
         BorderSpacing.Top = 4
         Caption = '预设'
         ChildSizing.LeftRightSpacing = 4
