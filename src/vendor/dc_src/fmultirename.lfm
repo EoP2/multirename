@@ -90,13 +90,11 @@ object frmMultiRename: TfrmMultiRename
       object gbName: TGroupBox
         AnchorSideLeft.Control = pnlOptionsLeft
         AnchorSideTop.Control = pnlOptionsLeft
-        AnchorSideRight.Control = pnlOptionsLeft
-        AnchorSideRight.Side = asrBottom
         Left = 0
         Height = 210
         Top = 0
         Width = 250
-        Anchors = [akTop, akLeft, akRight]
+        Anchors = [akTop, akLeft]
         AutoSize = True
         Caption = '文件名(&N)'
         ChildSizing.LeftRightSpacing = 4
@@ -156,12 +154,13 @@ object frmMultiRename: TfrmMultiRename
         end
       end
       object gbExt: TGroupBox
-        AnchorSideLeft.Control = pnlOptionsLeft
-        AnchorSideTop.Control = gbName
+        AnchorSideLeft.Control = gbName
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = pnlOptionsLeft
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
         AnchorSideRight.Side = asrBottom
-        Left = 0
+        Left = 254
         Height = 210
         Top = 0
         Width = 250
@@ -232,14 +231,14 @@ object frmMultiRename: TfrmMultiRename
         Left = 0
         Height = 59
         Top = 214
-        Width = 100
+        Width = 120
         Anchors = [akTop, akLeft]
         AutoSize = True
         BorderSpacing.Top = 4
         Caption = '排序'
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.TopBottomSpacing = 2
-        ClientWidth = 98
+        ClientWidth = 118
         ParentFont = False
         TabOrder = 2
         object cmbAddSort: TComboBox
@@ -250,7 +249,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 4
           Height = 35
           Top = 2
-          Width = 90
+          Width = 110
           Anchors = [akTop, akLeft, akRight]
           DropDownCount = 8
           ItemHeight = 0
@@ -267,10 +266,10 @@ object frmMultiRename: TfrmMultiRename
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
         AnchorSideRight.Side = asrBottom
-        Left = 110
+        Left = 130
         Height = 59
         Top = 214
-        Width = 110
+        Width = 120
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
         BorderSpacing.Top = 4
@@ -279,7 +278,7 @@ object frmMultiRename: TfrmMultiRename
         ChildSizing.TopBottomSpacing = 2
         ChildSizing.HorizontalSpacing = 2
         ClientHeight = 39
-        ClientWidth = 98
+        ClientWidth = 118
         ParentFont = False
         TabOrder = 3
         object cbPresets: TComboBox
@@ -290,7 +289,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 4
           Height = 35
           Top = 2
-          Width = 72
+          Width = 92
           Anchors = [akTop, akLeft, akRight]
           DropDownCount = 15
           ItemHeight = 0
@@ -306,7 +305,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideRight.Side = asrBottom
           AnchorSideBottom.Control = cbPresets
           AnchorSideBottom.Side = asrBottom
-          Left = 78
+          Left = 98
           Height = 35
           Top = 2
           Width = 16
