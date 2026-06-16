@@ -83,11 +83,11 @@ object frmMultiRename: TfrmMultiRename
       Width = 250
       Align = alLeft
       BevelOuter = bvNone
-      Layout = cclLeftToRightThenTopToBottom
-      ControlsPerLine = 2
-      EnlargeHorizontal = crsScaleChilds
-      ShrinkHorizontal = crsScaleChilds
-      HorizontalSpacing = 4
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 2
+      ChildSizing.EnlargeHorizontal = crsScaleChilds
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.HorizontalSpacing = 4
       ClientHeight = 275
       ClientWidth = 250
       ParentFont = False
