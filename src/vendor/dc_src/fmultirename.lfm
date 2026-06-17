@@ -128,7 +128,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 4
           Height = 27
           Top = 37
-          Width = 46
+          Width = 90
           Anchors = [akTop, akLeft]
           Caption = '[N] 文件名(&N)'
           Action = actInsertNameN
@@ -143,7 +143,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 34
           Height = 27
           Top = 37
-          Width = 46
+          Width = 90
           Anchors = [akTop, akLeft]
           Caption = '[Nx:y] 范围(&R)'
           Action = actInsertNameNXY
@@ -173,7 +173,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 88
           Height = 27
           Top = 37
-          Width = 46
+          Width = 90
           Anchors = [akTop, akLeft]
           Caption = '[C] 计数器(&C)'
           Hint = '计数器 [C]'
@@ -189,7 +189,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 118
           Height = 27
           Top = 37
-          Width = 22
+          Width = 46
           Anchors = [akTop, akLeft]
           Caption = '其它…'
           Action = actShowNameCounterMenu
@@ -204,7 +204,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 142
           Height = 27
           Top = 37
-          Width = 46
+          Width = 90
           Anchors = [akTop, akLeft]
           Caption = '[YYYY][MM][DD] 日期(&D)'
           Action = actInsertNameDate
@@ -234,7 +234,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 196
           Height = 27
           Top = 37
-          Width = 46
+          Width = 90
           Anchors = [akTop, akLeft]
           Caption = '[hh][nn][ss] 时间(&T)'
           Action = actInsertNameTime
@@ -316,7 +316,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 4
           Height = 27
           Top = 37
-          Width = 46
+          Width = 90
           Anchors = [akTop, akLeft]
           Caption = '[E] 扩展名(&E)'
           Action = actInsertExtE
@@ -331,7 +331,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 52
           Height = 27
           Top = 37
-          Width = 46
+          Width = 90
           Anchors = [akTop, akLeft]
           Caption = '[Ex:y] 范围(&A)'
           Action = actInsertExtEXY
@@ -346,7 +346,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 84
           Height = 27
           Top = 37
-          Width = 46
+          Width = 90
           Anchors = [akTop, akLeft]
           Caption = '[C] 计数器(&C)'
           Action = actInsertExtC
