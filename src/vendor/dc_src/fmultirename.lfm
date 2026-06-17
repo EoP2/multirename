@@ -204,7 +204,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 142
           Height = 27
           Top = 37
-          Width = 90
+          Width = 120
           Anchors = [akTop, akLeft]
           Caption = '[YYYY][MM][DD] 日期(&D)'
           Action = actInsertNameDate
@@ -234,7 +234,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 196
           Height = 27
           Top = 37
-          Width = 90
+          Width = 120
           Anchors = [akTop, akLeft]
           Caption = '[hh][nn][ss] 时间(&T)'
           Action = actInsertNameTime
