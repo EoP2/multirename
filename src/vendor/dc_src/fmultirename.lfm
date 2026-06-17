@@ -1074,21 +1074,6 @@ object frmMultiRename: TfrmMultiRename
       Caption = '…'
       OnExecute = actExecute
     end
-    object actInsertExtE: TAction
-      Category = 'Masks'
-      Caption = '[E] 扩展名(&E)  '
-      OnExecute = actExecute
-    end
-    object actInsertExtEXY: TAction
-      Category = 'Masks'
-      Caption = '[E#:#] 范围(&A)'
-      OnExecute = actExecute
-    end
-    object actInsertExtC: TAction
-      Category = 'Masks'
-      Caption = '[C] 计数器(&C)  '
-      OnExecute = actExecute
-    end
   end
   object pmPresets: TPopupMenu
     Left = 120
