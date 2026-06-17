@@ -128,7 +128,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 4
           Height = 27
           Top = 37
-          Width = 90
+          Width = 110
           Anchors = [akTop, akLeft]
           Caption = '[N] 文件名(&N)'
           Action = actInsertNameN
@@ -144,7 +144,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 66
           Width = 90
           Anchors = [akTop, akLeft]
-          Caption = '[Nx:y] 范围(&R)'
+          Caption = '[N#:#] 范围(&R)'
           Action = actInsertNameNXY
           TabOrder = 2
           TabStop = True
@@ -157,9 +157,9 @@ object frmMultiRename: TfrmMultiRename
           Left = 64
           Height = 27
           Top = 66
-          Width = 20
+          Width = 16
           Anchors = [akTop, akLeft]
-          Caption = '+'
+          Caption = '#'
           Action = actShowNameFullMenu
           TabOrder = 3
           TabStop = True
@@ -332,7 +332,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 66
           Width = 90
           Anchors = [akTop, akLeft]
-          Caption = '[Ex:y] 范围(&A)'
+          Caption = '[E#:#] 范围(&A)'
           Action = actInsertExtEXY
           TabOrder = 2
           TabStop = True
@@ -588,7 +588,7 @@ object frmMultiRename: TfrmMultiRename
             Top = 4
             Width = 100
             BorderSpacing.Top = 4
-            Caption = '正则表达式(&R)'
+            Caption = '正则表达式(&X)'
             ParentFont = False
             TabOrder = 0
             OnChange = cbRegExpChange
@@ -932,12 +932,12 @@ object frmMultiRename: TfrmMultiRename
     Top = 96
     object actResetAll: TAction
       Category = 'Generic'
-      Caption = '重置全部(&A)'
+      Caption = '重置全部'
       OnExecute = actExecute
     end
     object actInvokeEditor: TAction
       Category = 'Generic'
-      Caption = '编辑(&E)'
+      Caption = '编辑…'
       OnExecute = actExecute
     end
     object actViewRenameLogFile: TAction
