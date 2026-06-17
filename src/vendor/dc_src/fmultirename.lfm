@@ -324,13 +324,12 @@ object frmMultiRename: TfrmMultiRename
           TabStop = True
         end
         object btnExtEXY: TKASButton
-          AnchorSideLeft.Control = btnExtE
-          AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = cbExt
+          AnchorSideLeft.Control = gbExt
+          AnchorSideTop.Control = btnExtE
           AnchorSideTop.Side = asrBottom
-          Left = 52
+          Left = 4
           Height = 27
-          Top = 37
+          Top = 66
           Width = 90
           Anchors = [akTop, akLeft]
           Caption = '[Ex:y] 范围(&A)'
@@ -341,11 +340,11 @@ object frmMultiRename: TfrmMultiRename
         object btnExtC: TKASButton
           AnchorSideLeft.Control = btnExtEXY
           AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = cbExt
+          AnchorSideTop.Control = cmbExtensionStyle
           AnchorSideTop.Side = asrBottom
           Left = 84
           Height = 27
-          Top = 37
+          Top = 66
           Width = 90
           Anchors = [akTop, akLeft]
           Caption = '[C] 计数器(&C)'
@@ -354,14 +353,15 @@ object frmMultiRename: TfrmMultiRename
           TabStop = True
         end
         object cmbExtensionStyle: TComboBox
-          AnchorSideLeft.Control = gbExt
-          AnchorSideTop.Control = btnExtE
+          AnchorSideLeft.Control = btnExtE
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbExt
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbExt
           AnchorSideRight.Side = asrBottom
           Left = 4
           Height = 35
-          Top = 66
+          Top = 37
           Width = 240
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Bottom = 4
