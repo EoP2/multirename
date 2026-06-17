@@ -126,12 +126,12 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideTop.Control = cbName
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = btnNameFull
-          AnchorSideRight.Side = asrBottom
+          AnchorSideakRight.Side = asrBottom
           Left = 4
           Height = 27
           Top = 37
           Width = 90
-          Anchors = [akTop, akLeft]
+          Anchors = [akTop, akLeft, akRight]
           Caption = '[N] 文件名(&N)'
           Action = actInsertNameN
           TabOrder = 1
@@ -159,7 +159,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 64
           Height = 27
           Top = 66
-          Width = 14
+          Width = 16
           Anchors = [akTop, akLeft]
           Caption = '#'
           Action = actShowNameFullMenu
@@ -189,7 +189,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 172
           Height = 27
           Top = 37
-          Width = 20
+          Width = 14
           Anchors = [akTop, akLeft]
           Caption = '…'
           Action = actShowNameDateMenu
@@ -219,7 +219,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 226
           Height = 27
           Top = 66
-          Width = 20
+          Width = 16
           Anchors = [akTop, akLeft]
           Caption = '…'
           Action = actShowNameTimeMenu
