@@ -149,11 +149,23 @@ type
     pnlOptionsLeft: TPanel;
     gbName: TGroupBox;
     cbName: TComboBox;
-    btnAnyNameMask: TKASButton;
+    pnlNameButtons: TPanel;
+    btnNameN: TKASButton;
+    btnNameNXY: TKASButton;
+    btnNameFull: TKASButton;
+    btnNameC: TKASButton;
+    btnNameCounterMore: TKASButton;
+    btnNameDate: TKASButton;
+    btnNameDateMore: TKASButton;
+    btnNameTime: TKASButton;
+    btnNameTimeMore: TKASButton;
     cbNameMaskStyle: TComboBox;
     gbExt: TGroupBox;
     cbExt: TComboBox;
-    btnAnyExtMask: TKASButton;
+    pnlExtButtons: TPanel;
+    btnExtE: TKASButton;
+    btnExtEXY: TKASButton;
+    btnExtC: TKASButton;
     cmbExtensionStyle: TComboBox;
     gbPresets: TGroupBox;
     cbPresets: TComboBox;
@@ -186,7 +198,6 @@ type
     btnViewRenameLogFile: TSpeedButton;
     pmPresets: TPopupMenu;
     pmFloatingMainMaskMenu: TPopupMenu;
-    pmDynamicMasks: TPopupMenu;
     pmEditDirect: TPopupMenu;
     mnuLoadFromFile: TMenuItem;
     mnuEditNames: TMenuItem;
@@ -211,11 +222,19 @@ type
     actRenamePreset: TAction;
     actDeletePreset: TAction;
     actSortPresets: TAction;
-    actAnyNameMask: TAction;
-    actClearNameMask: TAction;
-    actAnyExtMask: TAction;
-    actClearExtMask: TAction;
     actViewRenameLogFile: TAction;
+    actInsertNameN: TAction;
+    actInsertNameNXY: TAction;
+    actShowNameFullMenu: TAction;
+    actInsertNameC: TAction;
+    actShowNameCounterMenu: TAction;
+    actInsertNameDate: TAction;
+    actShowNameDateMenu: TAction;
+    actInsertNameTime: TAction;
+    actShowNameTimeMenu: TAction;
+    actInsertExtE: TAction;
+    actInsertExtEXY: TAction;
+    actInsertExtC: TAction;
     procedure FormCreate({%H-}Sender: TObject);
     procedure FormCloseQuery({%H-}Sender: TObject; var CanClose: boolean);
     procedure FormClose({%H-}Sender: TObject; var CloseAction: TCloseAction);
@@ -272,11 +291,10 @@ type
     procedure FillPresetsList(const WantedSelectedPresetName: string = '');
     procedure RefreshActivePresetCommands;
     procedure InitializeMaskHelper;
-    procedure PopulateFilenameMenu(AMenuSomething: TPopupMenu);
-    procedure PopulateExtensionMenu(AMenuSomething: TPopupMenu);
-    procedure BuildMaskMenu(AMenuSomething: TMenuItem; iTarget: tTargetForMask; iMenuTypeMask: tRenameMaskToUse);
+    procedure BuildMaskMenuFromIndices(AMenu: TMenuItem; iTarget: tTargetForMask; const AIndices: array of integer);
+    procedure DoStraightMask(iIdx: integer; iTarget: tTargetForMask);
+    procedure DoXYMask(iIdx: integer; iTarget: tTargetForMask);
     procedure BuildPresetsMenu(AMenuSomething: TPopupMenu);
-    function GetMaskCategoryName(aRenameMaskToUse: tRenameMaskToUse): string;
     function GetImageIndexCategoryName(aRenameMaskToUse: tRenameMaskToUse): integer;
     function AppendSubMenuToThisMenu(ATargetMenu: TMenuItem; sCaption: string; iImageIndex: integer): TMenuItem;
     function AppendActionMenuToThisMenu(ATargetMenu: TMenuItem; paramAction: TAction): TMenuItem;
@@ -330,10 +348,18 @@ type
     procedure cm_RenamePreset(const Params: array of string);
     procedure cm_DeletePreset(const Params: array of string);
     procedure cm_SortPresets(const Params: array of string);
-    procedure cm_AnyNameMask(const {%H-}Params: array of string);
-    procedure cm_ClearNameMask(const {%H-}Params: array of string);
-    procedure cm_AnyExtMask(const {%H-}Params: array of string);
-    procedure cm_ClearExtMask(const {%H-}Params: array of string);
+    procedure cm_InsertNameN(const {%H-}Params: array of string);
+    procedure cm_InsertNameNXY(const {%H-}Params: array of string);
+    procedure cm_ShowNameFullMenu(const {%H-}Params: array of string);
+    procedure cm_InsertNameC(const {%H-}Params: array of string);
+    procedure cm_ShowNameCounterMenu(const {%H-}Params: array of string);
+    procedure cm_InsertNameDate(const {%H-}Params: array of string);
+    procedure cm_ShowNameDateMenu(const {%H-}Params: array of string);
+    procedure cm_InsertNameTime(const {%H-}Params: array of string);
+    procedure cm_ShowNameTimeMenu(const {%H-}Params: array of string);
+    procedure cm_InsertExtE(const {%H-}Params: array of string);
+    procedure cm_InsertExtEXY(const {%H-}Params: array of string);
+    procedure cm_InsertExtC(const {%H-}Params: array of string);
     procedure cm_ViewRenameLogFile(const {%H-}Params: array of string);
   end;
 
@@ -384,8 +410,8 @@ var
   // 1. Add its entry below in the "MaskHelpers" array.
   // 2. Go immediately set its translatable string for the user in the function "InitializeMaskHelper" and the text in unit "uLng".
   // 3. When editing "InitializeMaskHelper", make sure to update the TWO columns of indexes.
-  // 4. In the procedure "BuildMaskMenu", there is good chance you need to associated to the "AMenuItem.OnClick" the correct function based on "MaskHelpers[iSeekIndex].MenuActionStyle".
-  // 5. If it's a NEW procedure, you'll need to write it. You may check "MenuItemXCharactersMaskClick" for inspiration.
+  // 4. Add the new index to the relevant BuildMaskMenuFromIndices call in the cm_ShowXxx / cm_InsertXxx methods.
+  // 5. If it's a NEW click handler style, write a new case in BuildMaskMenuFromIndices and a new handler.
   // 6. There is good chance you need to edit "sHandleFormatString" to add your new mask and action to do with it.
 
   MaskHelpers: array[0..pred(NBMAXHELPERS)] of tMaskHelper =
@@ -597,12 +623,6 @@ begin
       mrlbFreshNew:            FillPresetsList(sFRESHMASKS);
     end;
 
-  btnAnyNameMask.Action := actAnyNameMask;
-  btnAnyNameMask.Caption := '...';
-  btnAnyNameMask.Width := fneRenameLogFileFilename.ButtonWidth;
-  btnAnyExtMask.Action := actAnyExtMask;
-  btnAnyExtMask.Caption := '...';
-  btnAnyExtMask.Width := fneRenameLogFileFilename.ButtonWidth;
   btnViewRenameLogFile.Action := actViewRenameLogFile;
   btnViewRenameLogFile.Caption := '查看日志';
   btnViewRenameLogFile.Width := 60;
@@ -1287,78 +1307,6 @@ begin
   end;
 end;
 
-{ TfrmMultiRename.PopulateFilenameMenu }
-procedure TfrmMultiRename.PopulateFilenameMenu(AMenuSomething: TPopupMenu);
-var
-  miSubMenu: TMenuItem;
-begin
-  miSubMenu := AppendSubMenuToThisMenu(AMenuSomething.Items, GetMaskCategoryName(rmtuFilename), GetImageIndexCategoryName(rmtuFilename));
-  BuildMaskMenu(miSubMenu, tfmFilename, rmtuFilename);
-  miSubMenu := AppendSubMenuToThisMenu(AMenuSomething.Items, GetMaskCategoryName(rmtuExtension), GetImageIndexCategoryName(rmtuExtension));
-  BuildMaskMenu(miSubMenu, tfmFilename, rmtuExtension);
-  miSubMenu := AppendSubMenuToThisMenu(AMenuSomething.Items, GetMaskCategoryName(rmtuCounter), GetImageIndexCategoryName(rmtuCounter));
-  BuildMaskMenu(miSubMenu, tfmFilename, rmtuCounter);
-  miSubMenu := AppendSubMenuToThisMenu(AMenuSomething.Items, GetMaskCategoryName(rmtuDate), GetImageIndexCategoryName(rmtuDate));
-  BuildMaskMenu(miSubMenu, tfmFilename, rmtuDate);
-  miSubMenu := AppendSubMenuToThisMenu(AMenuSomething.Items, GetMaskCategoryName(rmtuTime), GetImageIndexCategoryName(rmtuTime));
-  BuildMaskMenu(miSubMenu, tfmFilename, rmtuTime);
-  // [独立版] 去掉插件子菜单
-  AppendSubMenuToThisMenu(AMenuSomething.Items, '-', -1);
-  AppendActionMenuToThisMenu(AMenuSomething.Items, actClearNameMask);
-end;
-
-{ TfrmMultiRename.PopulateExtensionMenu }
-procedure TfrmMultiRename.PopulateExtensionMenu(AMenuSomething: TPopupMenu);
-var
-  miSubMenu: TMenuItem;
-begin
-  miSubMenu := AppendSubMenuToThisMenu(AMenuSomething.Items, GetMaskCategoryName(rmtuFilename), GetImageIndexCategoryName(rmtuFilename));
-  BuildMaskMenu(miSubMenu, tfmExtension, rmtuFilename);
-  miSubMenu := AppendSubMenuToThisMenu(AMenuSomething.Items, GetMaskCategoryName(rmtuExtension), GetImageIndexCategoryName(rmtuExtension));
-  BuildMaskMenu(miSubMenu, tfmExtension, rmtuExtension);
-  miSubMenu := AppendSubMenuToThisMenu(AMenuSomething.Items, GetMaskCategoryName(rmtuCounter), GetImageIndexCategoryName(rmtuCounter));
-  BuildMaskMenu(miSubMenu, tfmExtension, rmtuCounter);
-  miSubMenu := AppendSubMenuToThisMenu(AMenuSomething.Items, GetMaskCategoryName(rmtuDate), GetImageIndexCategoryName(rmtuDate));
-  BuildMaskMenu(miSubMenu, tfmExtension, rmtuDate);
-  miSubMenu := AppendSubMenuToThisMenu(AMenuSomething.Items, GetMaskCategoryName(rmtuTime), GetImageIndexCategoryName(rmtuTime));
-  BuildMaskMenu(miSubMenu, tfmExtension, rmtuTime);
-  // [独立版] 去掉插件子菜单
-  AppendSubMenuToThisMenu(AMenuSomething.Items, '-', -1);
-  AppendActionMenuToThisMenu(AMenuSomething.Items, actClearExtMask);
-end;
-
-{ TfrmMultiRename.BuildMaskMenu }
-procedure TfrmMultiRename.BuildMaskMenu(AMenuSomething: TMenuItem; iTarget: tTargetForMask; iMenuTypeMask: tRenameMaskToUse);
-var
-  iSeekIndex: integer;
-  AMenuItem: TMenuItem;
-begin
-  AMenuSomething.Clear;
-
-  for iSeekIndex := 0 to pred(NBMAXHELPERS) do
-  begin
-    if MaskHelpers[iSeekIndex].iMenuType = iMenuTypeMask then
-    begin
-      AMenuItem := TMenuItem.Create(AMenuSomething);
-      AMenuItem.Caption := MaskHelpers[iSeekIndex].sMenuItem;
-      AMenuItem.Tag := (iSeekIndex shl 16) or Ord(iTarget);
-      AMenuItem.Hint := MaskHelpers[iSeekIndex].sKeyword;
-      AMenuItem.ImageIndex := GetImageIndexCategoryName(MaskHelpers[iSeekIndex].iMenuType);
-
-      case MaskHelpers[iSeekIndex].MenuActionStyle of
-        masStraight: AMenuItem.OnClick := @MenuItemStraightMaskClick;
-        masXYCharacters: AMenuItem.OnClick := @MenuItemXCharactersMaskClick;
-        masAskVariable: AMenuItem.OnClick := @MenuItemVariableMaskClick;
-        masDirectorySelector: AMenuItem.OnClick := @MenuItemDirectorySelectorMaskClick;
-      end;
-
-      AMenuSomething.Add(AMenuItem);
-    end;
-  end;
-
-  // [独立版] 去掉插件（rmtuPlugins）分支
-end;
-
 { TfrmMultiRename.BuildPresetsMenu }
 procedure TfrmMultiRename.BuildPresetsMenu(AMenuSomething: TPopupMenu);
 begin
@@ -1370,19 +1318,6 @@ begin
   AppendActionMenuToThisMenu(AMenuSomething.Items, actRenamePreset);
   AppendActionMenuToThisMenu(AMenuSomething.Items, actDeletePreset);
   AppendActionMenuToThisMenu(AMenuSomething.Items, actSortPresets);
-end;
-
-{ TfrmMultiRename.GetMaskCategoryName }
-function TfrmMultiRename.GetMaskCategoryName(aRenameMaskToUse: tRenameMaskToUse): string;
-begin
-  Result := '';
-  case aRenameMaskToUse of
-    rmtuFilename: Result := rsMulRenFilename;
-    rmtuExtension: Result := rsMulRenExtension;
-    rmtuCounter: Result := rsMulRenCounter;
-    rmtuDate: Result := rsMulRenDate;
-    rmtuTime: Result := rsMulRenTime;
-  end;
 end;
 
 { TfrmMultiRename.GetImageIndexCategoryName }
@@ -1418,39 +1353,9 @@ end;
 
 { TfrmMultiRename.MenuItemXCharactersMaskClick }
 procedure TfrmMultiRename.MenuItemXCharactersMaskClick(Sender: TObject);
-var
-  sSourceToSelectFromText, sPrefix: string;
-  sResultingMaskValue: string = '';
-  iMaskHelperIndex: integer;
 begin
-  iMaskHelperIndex := TMenuItem(Sender).Tag shr 16;
-
-  if iMaskHelperIndex < length(MaskHelpers) then
-  begin
-    sSourceToSelectFromText := '';
-    case MaskHelpers[iMaskHelperIndex].iSourceOfInformation of
-      soiFilename:
-      begin
-        sSourceToSelectFromText := FFiles[pred(StringGrid.Row)].NameNoExt;
-        sPrefix := 'N';
-      end;
-
-      soiExtension:
-      begin
-        sSourceToSelectFromText := FFiles[pred(StringGrid.Row)].Extension;
-        sPrefix := 'E';
-      end;
-
-      soiFullName:
-      begin
-        sSourceToSelectFromText := FFiles[pred(StringGrid.Row)].FullPath;
-        sPrefix := 'A';
-      end;
-    end;
-
-    if ShowSelectTextRangeDlg(Self, Caption, sSourceToSelectFromText, sPrefix, sResultingMaskValue) then
-      InsertMask(sResultingMaskValue, tTargetForMask(TMenuItem(Sender).Tag and iTARGETMASK));
-  end;
+  DoXYMask(TMenuItem(Sender).Tag shr 16,
+    tTargetForMask(TMenuItem(Sender).Tag and iTARGETMASK));
 end;
 
 { TfrmMultiRename.MenuItemDirectorySelectorMaskClick }
@@ -1478,6 +1383,66 @@ begin
   end;
 end;
 
+{ TfrmMultiRename.DoStraightMask }
+procedure TfrmMultiRename.DoStraightMask(iIdx: integer; iTarget: tTargetForMask);
+begin
+  InsertMask(MaskHelpers[iIdx].sKeyword, iTarget);
+end;
+
+{ TfrmMultiRename.DoXYMask }
+procedure TfrmMultiRename.DoXYMask(iIdx: integer; iTarget: tTargetForMask);
+var
+  sSourceToSelectFromText, sPrefix: string;
+  sResultingMaskValue: string = '';
+begin
+  if iIdx >= length(MaskHelpers) then Exit;
+  sSourceToSelectFromText := '';
+  case MaskHelpers[iIdx].iSourceOfInformation of
+    soiFilename:
+    begin
+      sSourceToSelectFromText := FFiles[pred(StringGrid.Row)].NameNoExt;
+      sPrefix := 'N';
+    end;
+    soiExtension:
+    begin
+      sSourceToSelectFromText := FFiles[pred(StringGrid.Row)].Extension;
+      sPrefix := 'E';
+    end;
+    soiFullName:
+    begin
+      sSourceToSelectFromText := FFiles[pred(StringGrid.Row)].FullPath;
+      sPrefix := 'A';
+    end;
+  end;
+  if ShowSelectTextRangeDlg(Self, Caption, sSourceToSelectFromText, sPrefix, sResultingMaskValue) then
+    InsertMask(sResultingMaskValue, iTarget);
+end;
+
+{ TfrmMultiRename.BuildMaskMenuFromIndices }
+procedure TfrmMultiRename.BuildMaskMenuFromIndices(AMenu: TMenuItem; iTarget: tTargetForMask;
+  const AIndices: array of integer);
+var
+  i: integer;
+  AMenuItem: TMenuItem;
+begin
+  AMenu.Clear;
+  for i in AIndices do
+  begin
+    AMenuItem := TMenuItem.Create(AMenu);
+    AMenuItem.Caption    := MaskHelpers[i].sMenuItem;
+    AMenuItem.Hint       := MaskHelpers[i].sKeyword;
+    AMenuItem.Tag        := (i shl 16) or Ord(iTarget);
+    AMenuItem.ImageIndex := GetImageIndexCategoryName(MaskHelpers[i].iMenuType);
+    case MaskHelpers[i].MenuActionStyle of
+      masStraight:          AMenuItem.OnClick := @MenuItemStraightMaskClick;
+      masXYCharacters:      AMenuItem.OnClick := @MenuItemXCharactersMaskClick;
+      masAskVariable:       AMenuItem.OnClick := @MenuItemVariableMaskClick;
+      masDirectorySelector: AMenuItem.OnClick := @MenuItemDirectorySelectorMaskClick;
+    end;
+    AMenu.Add(AMenuItem);
+  end;
+end;
+
 { TfrmMultiRename.MenuItemVariableMaskClick }
 procedure TfrmMultiRename.MenuItemVariableMaskClick(Sender: TObject);
 var
@@ -1494,22 +1459,9 @@ end;
 
 { TfrmMultiRename.MenuItemStraightMaskClick }
 procedure TfrmMultiRename.MenuItemStraightMaskClick(Sender: TObject);
-var
-  sMaks: string;
 begin
-  sMaks := TMenuItem(Sender).Hint;
-  case tTargetForMask(TMenuItem(Sender).Tag and iTARGETMASK) of
-    tfmFilename:
-    begin
-      InsertMask(sMaks, cbName);
-      cbName.SetFocus;
-    end;
-    tfmExtension:
-    begin
-      InsertMask(sMaks, cbExt);
-      cbExt.SetFocus;
-    end;
-  end;
+  InsertMask(TMenuItem(Sender).Hint,
+    tTargetForMask(TMenuItem(Sender).Tag and iTARGETMASK));
 end;
 
 { TfrmMultiRename.PopupDynamicMenuAtThisControl }
@@ -2800,37 +2752,86 @@ begin
   end;
 end;
 
-{ TfrmMultiRename.cm_AnyNameMask }
-procedure TfrmMultiRename.cm_AnyNameMask(const {%H-}Params: array of string);
+{ TfrmMultiRename.cm_InsertNameN }
+procedure TfrmMultiRename.cm_InsertNameN(const {%H-}Params: array of string);
+begin
+  DoStraightMask(0, tfmFilename);
+end;
+
+{ TfrmMultiRename.cm_InsertNameNXY }
+procedure TfrmMultiRename.cm_InsertNameNXY(const {%H-}Params: array of string);
+begin
+  if FFiles.Count > 0 then
+    DoXYMask(1, tfmFilename);
+end;
+
+{ TfrmMultiRename.cm_ShowNameFullMenu }
+procedure TfrmMultiRename.cm_ShowNameFullMenu(const {%H-}Params: array of string);
 begin
   pmFloatingMainMaskMenu.Items.Clear;
-  PopulateFilenameMenu(pmFloatingMainMaskMenu);
-  PopupDynamicMenuAtThisControl(pmFloatingMainMaskMenu, btnAnyNameMask);
+  BuildMaskMenuFromIndices(pmFloatingMainMaskMenu.Items, tfmFilename, [2, 3, 4]);
+  PopupDynamicMenuAtThisControl(pmFloatingMainMaskMenu, btnNameFull);
 end;
 
-{ TfrmMultiRename.cm_ClearNameMask }
-procedure TfrmMultiRename.cm_ClearNameMask(const {%H-}Params: array of string);
+{ TfrmMultiRename.cm_InsertNameC }
+procedure TfrmMultiRename.cm_InsertNameC(const {%H-}Params: array of string);
 begin
-  cbName.Text := '';
-  cbNameStyleChange(cbExt);
-  if cbName.CanFocus then
-    cbName.SetFocus;
+  DoStraightMask(7, tfmFilename);
 end;
 
-{ TfrmMultiRename.cm_AnyExtMask }
-procedure TfrmMultiRename.cm_AnyExtMask(const {%H-}Params: array of string);
+{ TfrmMultiRename.cm_ShowNameCounterMenu }
+procedure TfrmMultiRename.cm_ShowNameCounterMenu(const {%H-}Params: array of string);
 begin
   pmFloatingMainMaskMenu.Items.Clear;
-  PopulateExtensionMenu(pmFloatingMainMaskMenu);
-  PopupDynamicMenuAtThisControl(pmFloatingMainMaskMenu, btnAnyExtMask);
+  BuildMaskMenuFromIndices(pmFloatingMainMaskMenu.Items, tfmFilename, [8, 9]);
+  PopupDynamicMenuAtThisControl(pmFloatingMainMaskMenu, btnNameCounterMore);
 end;
 
-{ TfrmMultiRename.cm_ClearExtMask }
-procedure TfrmMultiRename.cm_ClearExtMask(const {%H-}Params: array of string);
+{ TfrmMultiRename.cm_InsertNameDate }
+procedure TfrmMultiRename.cm_InsertNameDate(const {%H-}Params: array of string);
 begin
-  cbExt.Text := '';
-  cbNameStyleChange(cbExt);
-  if cbExt.CanFocus then cbExt.SetFocus;
+  DoStraightMask(20, tfmFilename);
+end;
+
+{ TfrmMultiRename.cm_ShowNameDateMenu }
+procedure TfrmMultiRename.cm_ShowNameDateMenu(const {%H-}Params: array of string);
+begin
+  pmFloatingMainMaskMenu.Items.Clear;
+  BuildMaskMenuFromIndices(pmFloatingMainMaskMenu.Items, tfmFilename, [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]);
+  PopupDynamicMenuAtThisControl(pmFloatingMainMaskMenu, btnNameDateMore);
+end;
+
+{ TfrmMultiRename.cm_InsertNameTime }
+procedure TfrmMultiRename.cm_InsertNameTime(const {%H-}Params: array of string);
+begin
+  DoStraightMask(27, tfmFilename);
+end;
+
+{ TfrmMultiRename.cm_ShowNameTimeMenu }
+procedure TfrmMultiRename.cm_ShowNameTimeMenu(const {%H-}Params: array of string);
+begin
+  pmFloatingMainMaskMenu.Items.Clear;
+  BuildMaskMenuFromIndices(pmFloatingMainMaskMenu.Items, tfmFilename, [21, 22, 23, 24, 25, 26]);
+  PopupDynamicMenuAtThisControl(pmFloatingMainMaskMenu, btnNameTimeMore);
+end;
+
+{ TfrmMultiRename.cm_InsertExtE }
+procedure TfrmMultiRename.cm_InsertExtE(const {%H-}Params: array of string);
+begin
+  DoStraightMask(5, tfmExtension);
+end;
+
+{ TfrmMultiRename.cm_InsertExtEXY }
+procedure TfrmMultiRename.cm_InsertExtEXY(const {%H-}Params: array of string);
+begin
+  if FFiles.Count > 0 then
+    DoXYMask(6, tfmExtension);
+end;
+
+{ TfrmMultiRename.cm_InsertExtC }
+procedure TfrmMultiRename.cm_InsertExtC(const {%H-}Params: array of string);
+begin
+  DoStraightMask(7, tfmExtension);
 end;
 
 { TfrmMultiRename.cm_ViewRenameLogFile }
