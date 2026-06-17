@@ -121,118 +121,152 @@ object frmMultiRename: TfrmMultiRename
           ParentFont = False
           TabOrder = 0
         end
-        object pnlNameButtons: TPanel
+        object btnNameN: TKASButton
           AnchorSideLeft.Control = gbName
           AnchorSideTop.Control = cbName
           AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = gbName
-          AnchorSideRight.Side = asrBottom
           Left = 4
           Height = 27
           Top = 37
-          Width = 240
-          Anchors = [akTop, akLeft, akRight]
-          AutoSize = True
-          BevelOuter = bvNone
-          ChildSizing.Layout = cclLeftToRightThenTopToBottom
-          ChildSizing.HorizontalSpacing = 2
-          ChildSizing.VerticalSpacing = 0
-          ParentFont = False
+          Width = 28
+          Anchors = [akTop, akLeft]
+          Caption = '名称'
+          Hint = '名称 [N]'
+          Action = actInsertNameN
           TabOrder = 1
-          object btnNameN: TKASButton
-            Width = 28
-            Height = 27
-            Caption = '名称'
-            Hint = '名称 [N]'
-            Action = actInsertNameN
-            Anchors = []
-            TabOrder = 0
-            TabStop = True
-          end
-          object btnNameNXY: TKASButton
-            Width = 28
-            Height = 27
-            Caption = '截取'
-            Hint = '截取名称片段 [Nx:y]'
-            Action = actInsertNameNXY
-            Anchors = []
-            TabOrder = 1
-            TabStop = True
-          end
-          object btnNameFull: TKASButton
-            Width = 22
-            Height = 27
-            Caption = '...'
-            Hint = '完整文件名 / 截取完整文件名片段 / 父文件夹'
-            Action = actShowNameFullMenu
-            Anchors = []
-            TabOrder = 2
-            TabStop = True
-          end
-          object btnNameC: TKASButton
-            Width = 28
-            Height = 27
-            Caption = '计数'
-            Hint = '计数器 [C]'
-            Action = actInsertNameC
-            Anchors = []
-            TabOrder = 3
-            TabStop = True
-          end
-          object btnNameCounterMore: TKASButton
-            Width = 22
-            Height = 27
-            Caption = '...'
-            Hint = 'GUID / 动态变量'
-            Action = actShowNameCounterMenu
-            Anchors = []
-            TabOrder = 4
-            TabStop = True
-          end
-          object btnNameDate: TKASButton
-            Width = 28
-            Height = 27
-            Caption = '日期'
-            Hint = '完整日期 [YYYY][MM][DD]'
-            Action = actInsertNameDate
-            Anchors = []
-            TabOrder = 5
-            TabStop = True
-          end
-          object btnNameDateMore: TKASButton
-            Width = 22
-            Height = 27
-            Caption = '...'
-            Hint = '详细日期选项'
-            Action = actShowNameDateMenu
-            Anchors = []
-            TabOrder = 6
-            TabStop = True
-          end
-          object btnNameTime: TKASButton
-            Width = 28
-            Height = 27
-            Caption = '时间'
-            Hint = '完整时间 [hh][nn][ss]'
-            Action = actInsertNameTime
-            Anchors = []
-            TabOrder = 7
-            TabStop = True
-          end
-          object btnNameTimeMore: TKASButton
-            Width = 22
-            Height = 27
-            Caption = '...'
-            Hint = '详细时间选项'
-            Action = actShowNameTimeMenu
-            Anchors = []
-            TabOrder = 8
-            TabStop = True
-          end
+          TabStop = True
+        end
+        object btnNameNXY: TKASButton
+          AnchorSideLeft.Control = btnNameN
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbName
+          AnchorSideTop.Side = asrBottom
+          Left = 34
+          Height = 27
+          Top = 37
+          Width = 28
+          Anchors = [akTop, akLeft]
+          Caption = '截取'
+          Hint = '截取名称片段 [Nx:y]'
+          Action = actInsertNameNXY
+          TabOrder = 2
+          TabStop = True
+        end
+        object btnNameFull: TKASButton
+          AnchorSideLeft.Control = btnNameNXY
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbName
+          AnchorSideTop.Side = asrBottom
+          Left = 64
+          Height = 27
+          Top = 37
+          Width = 22
+          Anchors = [akTop, akLeft]
+          Caption = '...'
+          Hint = '完整文件名 / 截取完整文件名片段 / 父文件夹'
+          Action = actShowNameFullMenu
+          TabOrder = 3
+          TabStop = True
+        end
+        object btnNameC: TKASButton
+          AnchorSideLeft.Control = btnNameFull
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbName
+          AnchorSideTop.Side = asrBottom
+          Left = 88
+          Height = 27
+          Top = 37
+          Width = 28
+          Anchors = [akTop, akLeft]
+          Caption = '计数'
+          Hint = '计数器 [C]'
+          Action = actInsertNameC
+          TabOrder = 4
+          TabStop = True
+        end
+        object btnNameCounterMore: TKASButton
+          AnchorSideLeft.Control = btnNameC
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbName
+          AnchorSideTop.Side = asrBottom
+          Left = 118
+          Height = 27
+          Top = 37
+          Width = 22
+          Anchors = [akTop, akLeft]
+          Caption = '...'
+          Hint = 'GUID / 动态变量'
+          Action = actShowNameCounterMenu
+          TabOrder = 5
+          TabStop = True
+        end
+        object btnNameDate: TKASButton
+          AnchorSideLeft.Control = btnNameCounterMore
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbName
+          AnchorSideTop.Side = asrBottom
+          Left = 142
+          Height = 27
+          Top = 37
+          Width = 28
+          Anchors = [akTop, akLeft]
+          Caption = '日期'
+          Hint = '完整日期 [YYYY][MM][DD]'
+          Action = actInsertNameDate
+          TabOrder = 6
+          TabStop = True
+        end
+        object btnNameDateMore: TKASButton
+          AnchorSideLeft.Control = btnNameDate
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbName
+          AnchorSideTop.Side = asrBottom
+          Left = 172
+          Height = 27
+          Top = 37
+          Width = 22
+          Anchors = [akTop, akLeft]
+          Caption = '...'
+          Hint = '详细日期选项'
+          Action = actShowNameDateMenu
+          TabOrder = 7
+          TabStop = True
+        end
+        object btnNameTime: TKASButton
+          AnchorSideLeft.Control = btnNameDateMore
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbName
+          AnchorSideTop.Side = asrBottom
+          Left = 196
+          Height = 27
+          Top = 37
+          Width = 28
+          Anchors = [akTop, akLeft]
+          Caption = '时间'
+          Hint = '完整时间 [hh][nn][ss]'
+          Action = actInsertNameTime
+          TabOrder = 8
+          TabStop = True
+        end
+        object btnNameTimeMore: TKASButton
+          AnchorSideLeft.Control = btnNameTime
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbName
+          AnchorSideTop.Side = asrBottom
+          Left = 226
+          Height = 27
+          Top = 37
+          Width = 22
+          Anchors = [akTop, akLeft]
+          Caption = '...'
+          Hint = '详细时间选项'
+          Action = actShowNameTimeMenu
+          TabOrder = 9
+          TabStop = True
         end
         object cbNameMaskStyle: TComboBox
           AnchorSideLeft.Control = gbName
-          AnchorSideTop.Control = pnlNameButtons
+          AnchorSideTop.Control = btnNameN
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbName
           AnchorSideRight.Side = asrBottom
@@ -246,7 +280,7 @@ object frmMultiRename: TfrmMultiRename
           OnChange = cbNameStyleChange
           ParentFont = False
           Style = csDropDownList
-          TabOrder = 2
+          TabOrder = 10
         end
       end
       object gbExt: TGroupBox
@@ -283,58 +317,56 @@ object frmMultiRename: TfrmMultiRename
           ParentFont = False
           TabOrder = 0
         end
-        object pnlExtButtons: TPanel
+        object btnExtE: TKASButton
           AnchorSideLeft.Control = gbExt
           AnchorSideTop.Control = cbExt
           AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = gbExt
-          AnchorSideRight.Side = asrBottom
           Left = 4
           Height = 27
           Top = 37
-          Width = 240
-          Anchors = [akTop, akLeft, akRight]
-          AutoSize = True
-          BevelOuter = bvNone
-          ChildSizing.Layout = cclLeftToRightThenTopToBottom
-          ChildSizing.HorizontalSpacing = 2
-          ChildSizing.VerticalSpacing = 0
-          ParentFont = False
+          Width = 46
+          Anchors = [akTop, akLeft]
+          Caption = '扩展名'
+          Hint = '扩展名 [E]'
+          Action = actInsertExtE
           TabOrder = 1
-          object btnExtE: TKASButton
-            Width = 40
-            Height = 27
-            Caption = '扩展名'
-            Hint = '扩展名 [E]'
-            Action = actInsertExtE
-            Anchors = []
-            TabOrder = 0
-            TabStop = True
-          end
-          object btnExtEXY: TKASButton
-            Width = 28
-            Height = 27
-            Caption = '截取'
-            Hint = '截取扩展名片段 [Ex:y]'
-            Action = actInsertExtEXY
-            Anchors = []
-            TabOrder = 1
-            TabStop = True
-          end
-          object btnExtC: TKASButton
-            Width = 28
-            Height = 27
-            Caption = '计数'
-            Hint = '计数器 [C]'
-            Action = actInsertExtC
-            Anchors = []
-            TabOrder = 2
-            TabStop = True
-          end
+          TabStop = True
+        end
+        object btnExtEXY: TKASButton
+          AnchorSideLeft.Control = btnExtE
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbExt
+          AnchorSideTop.Side = asrBottom
+          Left = 52
+          Height = 27
+          Top = 37
+          Width = 30
+          Anchors = [akTop, akLeft]
+          Caption = '截取'
+          Hint = '截取扩展名片段 [Ex:y]'
+          Action = actInsertExtEXY
+          TabOrder = 2
+          TabStop = True
+        end
+        object btnExtC: TKASButton
+          AnchorSideLeft.Control = btnExtEXY
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbExt
+          AnchorSideTop.Side = asrBottom
+          Left = 84
+          Height = 27
+          Top = 37
+          Width = 30
+          Anchors = [akTop, akLeft]
+          Caption = '计数'
+          Hint = '计数器 [C]'
+          Action = actInsertExtC
+          TabOrder = 3
+          TabStop = True
         end
         object cmbExtensionStyle: TComboBox
           AnchorSideLeft.Control = gbExt
-          AnchorSideTop.Control = pnlExtButtons
+          AnchorSideTop.Control = btnExtE
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbExt
           AnchorSideRight.Side = asrBottom
@@ -348,7 +380,7 @@ object frmMultiRename: TfrmMultiRename
           OnChange = cbNameStyleChange
           ParentFont = False
           Style = csDropDownList
-          TabOrder = 2
+          TabOrder = 4
         end
       end
       object gbAddSort: TGroupBox
