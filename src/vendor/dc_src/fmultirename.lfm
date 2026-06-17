@@ -158,7 +158,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 64
           Height = 27
           Top = 37
-          Width = 22
+          Width = 20
           Anchors = [akTop, akLeft]
           Caption = '+'
           Action = actShowNameFullMenu
@@ -204,9 +204,9 @@ object frmMultiRename: TfrmMultiRename
           Left = 142
           Height = 27
           Top = 37
-          Width = 120
+          Width = 70
           Anchors = [akTop, akLeft]
-          Caption = '[YYYY][MM][DD] 日期(&D)'
+          Caption = '日期(&D)'
           Action = actInsertNameDate
           TabOrder = 6
           TabStop = True
@@ -219,7 +219,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 172
           Height = 27
           Top = 37
-          Width = 22
+          Width = 20
           Anchors = [akTop, akLeft]
           Caption = '…'
           Action = actShowNameDateMenu
@@ -234,9 +234,9 @@ object frmMultiRename: TfrmMultiRename
           Left = 196
           Height = 27
           Top = 37
-          Width = 120
+          Width = 70
           Anchors = [akTop, akLeft]
-          Caption = '[hh][nn][ss] 时间(&T)'
+          Caption = '时间(&T)'
           Action = actInsertNameTime
           TabOrder = 8
           TabStop = True
@@ -249,7 +249,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 226
           Height = 27
           Top = 37
-          Width = 22
+          Width = 20
           Anchors = [akTop, akLeft]
           Caption = '…'
           Action = actShowNameTimeMenu
