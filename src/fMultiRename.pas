@@ -149,7 +149,6 @@ type
     pnlOptionsLeft: TPanel;
     gbName: TGroupBox;
     cbName: TComboBox;
-    pnlNameButtons: TPanel;
     btnNameN: TKASButton;
     btnNameNXY: TKASButton;
     btnNameFull: TKASButton;
@@ -162,7 +161,6 @@ type
     cbNameMaskStyle: TComboBox;
     gbExt: TGroupBox;
     cbExt: TComboBox;
-    pnlExtButtons: TPanel;
     btnExtE: TKASButton;
     btnExtEXY: TKASButton;
     btnExtC: TKASButton;
