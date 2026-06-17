@@ -130,7 +130,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 100
           Anchors = [akTop, akLeft]
-          Caption = '[N] 文件名(&N)'
+          Caption = '[N] 文件名(&N)  '
           Action = actInsertNameN
           TabOrder = 1
           TabStop = True
@@ -249,7 +249,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 100
           Anchors = [akTop, akLeft]
-          Caption = '[C] 计数器(&C)'
+          Caption = '[C] 计数器(&C)  '
           Action = actInsertNameC
           TabOrder = 9
           TabStop = True
@@ -317,7 +317,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 100
           Anchors = [akTop, akLeft]
-          Caption = '[E] 扩展名(&E)'
+          Caption = '[E] 扩展名(&E)  '
           Action = actInsertExtE
           TabOrder = 1
           TabStop = True
@@ -346,7 +346,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 100
           Anchors = [akTop, akLeft]
-          Caption = '[C] 计数器(&C)'
+          Caption = '[C] 计数器(&C)  '
           Action = actInsertExtC
           TabOrder = 3
           TabStop = True
@@ -1031,62 +1031,62 @@ object frmMultiRename: TfrmMultiRename
     end
     object actInsertNameN: TAction
       Category = 'Masks'
-      Caption = '名称 [N]'
+      Caption = '[N] 文件名(&N)  '
       OnExecute = actExecute
     end
     object actInsertNameNXY: TAction
       Category = 'Masks'
-      Caption = '截取名称片段'
+      Caption = '[N#:#] 范围(&R)'
       OnExecute = actExecute
     end
     object actShowNameFullMenu: TAction
       Category = 'Masks'
-      Caption = '完整文件名...'
+      Caption = '…'
       OnExecute = actExecute
     end
     object actInsertNameC: TAction
       Category = 'Masks'
-      Caption = '计数器 [C]'
+      Caption = '[C] 计数器(&C)  '
       OnExecute = actExecute
     end
     object actShowNameCounterMenu: TAction
       Category = 'Masks'
-      Caption = 'GUID / 变量...'
+      Caption = '…'
       OnExecute = actExecute
     end
     object actInsertNameDate: TAction
       Category = 'Masks'
-      Caption = '完整日期'
+      Caption = '日期(&D)'
       OnExecute = actExecute
     end
     object actShowNameDateMenu: TAction
       Category = 'Masks'
-      Caption = '详细日期...'
+      Caption = '…'
       OnExecute = actExecute
     end
     object actInsertNameTime: TAction
       Category = 'Masks'
-      Caption = '完整时间'
+      Caption = '时间(&T)'
       OnExecute = actExecute
     end
     object actShowNameTimeMenu: TAction
       Category = 'Masks'
-      Caption = '详细时间...'
+      Caption = '…'
       OnExecute = actExecute
     end
     object actInsertExtE: TAction
       Category = 'Masks'
-      Caption = '扩展名 [E]'
+      Caption = '[E] 扩展名(&E)  '
       OnExecute = actExecute
     end
     object actInsertExtEXY: TAction
       Category = 'Masks'
-      Caption = '截取扩展名片段'
+      Caption = '[E#:#] 范围(&A)'
       OnExecute = actExecute
     end
     object actInsertExtC: TAction
       Category = 'Masks'
-      Caption = '计数器 [C]（扩展名）'
+      Caption = '[C] 计数器(&C)  '
       OnExecute = actExecute
     end
   end
