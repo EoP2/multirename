@@ -194,8 +194,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 22
           Anchors = [akTop, akLeft]
-          Caption = '...'
-          Hint = 'GUID / 动态变量'
+          Caption = '其它'
           Action = actShowNameCounterMenu
           TabOrder = 5
           TabStop = True
@@ -226,7 +225,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 22
           Anchors = [akTop, akLeft]
-          Caption = '...'
+          Caption = '…'
           Hint = '详细日期选项'
           Action = actShowNameDateMenu
           TabOrder = 7
@@ -258,7 +257,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 22
           Anchors = [akTop, akLeft]
-          Caption = '...'
+          Caption = '…'
           Hint = '详细时间选项'
           Action = actShowNameTimeMenu
           TabOrder = 9
