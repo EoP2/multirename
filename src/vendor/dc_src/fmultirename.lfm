@@ -97,7 +97,7 @@ object frmMultiRename: TfrmMultiRename
         Width = 250
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
-        Caption = '文件名(&N)'
+        Caption = '文件名'
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.HorizontalSpacing = 2
         ChildSizing.VerticalSpacing = 2
@@ -130,8 +130,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 46
           Anchors = [akTop, akLeft]
-          Caption = '名称'
-          Hint = '名称 [N]'
+          Caption = '[N] 文件名(&N)'
           Action = actInsertNameN
           TabOrder = 1
           TabStop = True
@@ -146,8 +145,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 46
           Anchors = [akTop, akLeft]
-          Caption = '截取'
-          Hint = '截取名称片段 [Nx:y]'
+          Caption = '[Nx:y] 范围(&R)'
           Action = actInsertNameNXY
           TabOrder = 2
           TabStop = True
@@ -162,8 +160,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 22
           Anchors = [akTop, akLeft]
-          Caption = '...'
-          Hint = '完整文件名 / 截取完整文件名片段 / 父文件夹'
+          Caption = '+'
           Action = actShowNameFullMenu
           TabOrder = 3
           TabStop = True
@@ -178,7 +175,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 46
           Anchors = [akTop, akLeft]
-          Caption = '计数器'
+          Caption = '[C] 计数器(&C)'
           Hint = '计数器 [C]'
           Action = actInsertNameC
           TabOrder = 4
@@ -194,7 +191,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 22
           Anchors = [akTop, akLeft]
-          Caption = '其它'
+          Caption = '其它…'
           Action = actShowNameCounterMenu
           TabOrder = 5
           TabStop = True
@@ -209,8 +206,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 46
           Anchors = [akTop, akLeft]
-          Caption = '日期'
-          Hint = '完整日期 [YYYY][MM][DD]'
+          Caption = '[YYYY][MM][DD] 日期(&D)'
           Action = actInsertNameDate
           TabOrder = 6
           TabStop = True
@@ -226,7 +222,6 @@ object frmMultiRename: TfrmMultiRename
           Width = 22
           Anchors = [akTop, akLeft]
           Caption = '…'
-          Hint = '详细日期选项'
           Action = actShowNameDateMenu
           TabOrder = 7
           TabStop = True
@@ -241,8 +236,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 46
           Anchors = [akTop, akLeft]
-          Caption = '时间'
-          Hint = '完整时间 [hh][nn][ss]'
+          Caption = '[hh][nn][ss] 时间(&T)'
           Action = actInsertNameTime
           TabOrder = 8
           TabStop = True
@@ -258,7 +252,6 @@ object frmMultiRename: TfrmMultiRename
           Width = 22
           Anchors = [akTop, akLeft]
           Caption = '…'
-          Hint = '详细时间选项'
           Action = actShowNameTimeMenu
           TabOrder = 9
           TabStop = True
@@ -292,7 +285,7 @@ object frmMultiRename: TfrmMultiRename
         Width = 250
         Anchors = [akTop, akRight]
         AutoSize = True
-        Caption = '扩展名(&E)'
+        Caption = '扩展名'
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.HorizontalSpacing = 2
         ChildSizing.VerticalSpacing = 2
@@ -325,8 +318,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 46
           Anchors = [akTop, akLeft]
-          Caption = '扩展名'
-          Hint = '扩展名 [E]'
+          Caption = '[E] 扩展名(&E)'
           Action = actInsertExtE
           TabOrder = 1
           TabStop = True
@@ -341,8 +333,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 46
           Anchors = [akTop, akLeft]
-          Caption = '截取'
-          Hint = '截取扩展名片段 [Ex:y]'
+          Caption = '[Ex:y] 范围(&A)'
           Action = actInsertExtEXY
           TabOrder = 2
           TabStop = True
@@ -357,8 +348,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 46
           Anchors = [akTop, akLeft]
-          Caption = '计数器'
-          Hint = '计数器 [C]'
+          Caption = '[C] 计数器(&C)'
           Action = actInsertExtC
           TabOrder = 3
           TabStop = True
