@@ -125,14 +125,12 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideLeft.Control = gbName
           AnchorSideTop.Control = cbName
           AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = btnNameFull
-          AnchorSideakRight.Side = asrBottom
           Left = 4
           Height = 27
           Top = 37
           Width = 90
-          Anchors = [akTop, akLeft, akRight]
-          Caption = '[N] 文件名(&N)'
+          Anchors = [akTop, akLeft]
+          Caption = '[N] 文件名(&N)  '
           Action = actInsertNameN
           TabOrder = 1
           TabStop = True
