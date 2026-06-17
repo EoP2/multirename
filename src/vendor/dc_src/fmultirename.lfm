@@ -128,7 +128,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 4
           Height = 27
           Top = 37
-          Width = 28
+          Width = 46
           Anchors = [akTop, akLeft]
           Caption = '名称'
           Hint = '名称 [N]'
@@ -144,7 +144,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 34
           Height = 27
           Top = 37
-          Width = 28
+          Width = 46
           Anchors = [akTop, akLeft]
           Caption = '截取'
           Hint = '截取名称片段 [Nx:y]'
@@ -176,9 +176,9 @@ object frmMultiRename: TfrmMultiRename
           Left = 88
           Height = 27
           Top = 37
-          Width = 28
+          Width = 46
           Anchors = [akTop, akLeft]
-          Caption = '计数'
+          Caption = '计数器'
           Hint = '计数器 [C]'
           Action = actInsertNameC
           TabOrder = 4
@@ -208,7 +208,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 142
           Height = 27
           Top = 37
-          Width = 28
+          Width = 46
           Anchors = [akTop, akLeft]
           Caption = '日期'
           Hint = '完整日期 [YYYY][MM][DD]'
@@ -240,7 +240,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 196
           Height = 27
           Top = 37
-          Width = 28
+          Width = 46
           Anchors = [akTop, akLeft]
           Caption = '时间'
           Hint = '完整时间 [hh][nn][ss]'
@@ -340,7 +340,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 52
           Height = 27
           Top = 37
-          Width = 30
+          Width = 46
           Anchors = [akTop, akLeft]
           Caption = '截取'
           Hint = '截取扩展名片段 [Ex:y]'
@@ -356,9 +356,9 @@ object frmMultiRename: TfrmMultiRename
           Left = 84
           Height = 27
           Top = 37
-          Width = 30
+          Width = 46
           Anchors = [akTop, akLeft]
-          Caption = '计数'
+          Caption = '计数器'
           Hint = '计数器 [C]'
           Action = actInsertExtC
           TabOrder = 3
