@@ -121,7 +121,7 @@ object frmMultiRename: TfrmMultiRename
           ParentFont = False
           TabOrder = 0
         end
-        object btnNameN: TKASButton
+        object btnNameN: TBitBtn
           AnchorSideLeft.Control = gbName
           AnchorSideTop.Control = cbName
           AnchorSideTop.Side = asrBottom
