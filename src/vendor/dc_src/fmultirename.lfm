@@ -136,13 +136,12 @@ object frmMultiRename: TfrmMultiRename
           TabStop = True
         end
         object btnNameNXY: TKASButton
-          AnchorSideLeft.Control = btnNameN
-          AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = cbName
+          AnchorSideLeft.Control = gbName
+          AnchorSideTop.Control = btnNameN
           AnchorSideTop.Side = asrBottom
-          Left = 34
+          Left = 4
           Height = 27
-          Top = 37
+          Top = 66
           Width = 90
           Anchors = [akTop, akLeft]
           Caption = '[Nx:y] 范围(&R)'
@@ -153,11 +152,11 @@ object frmMultiRename: TfrmMultiRename
         object btnNameFull: TKASButton
           AnchorSideLeft.Control = btnNameNXY
           AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = cbName
+          AnchorSideTop.Control = btnNameN
           AnchorSideTop.Side = asrBottom
           Left = 64
           Height = 27
-          Top = 37
+          Top = 66
           Width = 20
           Anchors = [akTop, akLeft]
           Caption = '+'
@@ -165,39 +164,8 @@ object frmMultiRename: TfrmMultiRename
           TabOrder = 3
           TabStop = True
         end
-        object btnNameC: TKASButton
-          AnchorSideLeft.Control = btnNameFull
-          AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = cbName
-          AnchorSideTop.Side = asrBottom
-          Left = 88
-          Height = 27
-          Top = 37
-          Width = 90
-          Anchors = [akTop, akLeft]
-          Caption = '[C] 计数器(&C)'
-          Hint = '计数器 [C]'
-          Action = actInsertNameC
-          TabOrder = 4
-          TabStop = True
-        end
-        object btnNameCounterMore: TKASButton
-          AnchorSideLeft.Control = btnNameC
-          AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = cbName
-          AnchorSideTop.Side = asrBottom
-          Left = 118
-          Height = 27
-          Top = 37
-          Width = 46
-          Anchors = [akTop, akLeft]
-          Caption = '其它…'
-          Action = actShowNameCounterMenu
-          TabOrder = 5
-          TabStop = True
-        end
         object btnNameDate: TKASButton
-          AnchorSideLeft.Control = btnNameCounterMore
+          AnchorSideLeft.Control = btnNameN
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = cbName
           AnchorSideTop.Side = asrBottom
@@ -208,7 +176,7 @@ object frmMultiRename: TfrmMultiRename
           Anchors = [akTop, akLeft]
           Caption = '日期(&D)'
           Action = actInsertNameDate
-          TabOrder = 6
+          TabOrder = 4
           TabStop = True
         end
         object btnNameDateMore: TKASButton
@@ -223,41 +191,73 @@ object frmMultiRename: TfrmMultiRename
           Anchors = [akTop, akLeft]
           Caption = '…'
           Action = actShowNameDateMenu
-          TabOrder = 7
+          TabOrder = 5
           TabStop = True
         end
         object btnNameTime: TKASButton
-          AnchorSideLeft.Control = btnNameDateMore
+          AnchorSideLeft.Control = btnNameFull
           AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = cbName
+          AnchorSideTop.Control = btnNameDate
           AnchorSideTop.Side = asrBottom
           Left = 196
           Height = 27
-          Top = 37
+          Top = 66
           Width = 70
           Anchors = [akTop, akLeft]
           Caption = '时间(&T)'
           Action = actInsertNameTime
-          TabOrder = 8
+          TabOrder = 6
           TabStop = True
         end
         object btnNameTimeMore: TKASButton
           AnchorSideLeft.Control = btnNameTime
           AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = cbName
+          AnchorSideTop.Control = btnNameDateMore
           AnchorSideTop.Side = asrBottom
           Left = 226
           Height = 27
-          Top = 37
+          Top = 66
           Width = 20
           Anchors = [akTop, akLeft]
           Caption = '…'
           Action = actShowNameTimeMenu
+          TabOrder = 7
+          TabStop = True
+        end
+        object btnNameC: TKASButton
+          AnchorSideLeft.Control = btnNameDateMore
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbName
+          AnchorSideTop.Side = asrBottom
+          Left = 88
+          Height = 27
+          Top = 37
+          Width = 90
+          Anchors = [akTop, akLeft]
+          Caption = '[C] 计数器(&C)'
+          Hint = '计数器 [C]'
+          Action = actInsertNameC
+          TabOrder = 8
+          TabStop = True
+        end
+        object btnNameCounterMore: TKASButton
+          AnchorSideLeft.Control = btnNameC
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = cbName
+          AnchorSideTop.Side = asrBottom
+          Left = 118
+          Height = 27
+          Top = 37
+          Width = 46
+          Anchors = [akTop, akLeft]
+          Caption = '其它…'
+          Action = actShowNameCounterMenu
           TabOrder = 9
           TabStop = True
         end
         object cbNameMaskStyle: TComboBox
-          AnchorSideLeft.Control = gbName
+          AnchorSideLeft.Control = btnNameTimeMore
+          AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = btnNameN
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbName
@@ -338,13 +338,13 @@ object frmMultiRename: TfrmMultiRename
           TabStop = True
         end
         object btnExtC: TKASButton
-          AnchorSideLeft.Control = btnExtEXY
+          AnchorSideLeft.Control = btnExtE
           AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = cmbExtensionStyle
+          AnchorSideTop.Control = cbExt
           AnchorSideTop.Side = asrBottom
           Left = 84
           Height = 27
-          Top = 66
+          Top = 37
           Width = 90
           Anchors = [akTop, akLeft]
           Caption = '[C] 计数器(&C)'
@@ -353,15 +353,15 @@ object frmMultiRename: TfrmMultiRename
           TabStop = True
         end
         object cmbExtensionStyle: TComboBox
-          AnchorSideLeft.Control = btnExtE
+          AnchorSideLeft.Control = btnExtEXY
           AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = cbExt
+          AnchorSideTop.Control = btnExtC
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = gbExt
           AnchorSideRight.Side = asrBottom
-          Left = 4
+          Left = 84
           Height = 35
-          Top = 37
+          Top = 66
           Width = 240
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Bottom = 4
