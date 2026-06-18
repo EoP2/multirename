@@ -21,11 +21,11 @@ const
   rsMulRenPlugins           = '插件';   // 独立版不显示此菜单，保留常量避免编译报错
 
   // Mask token 描述（菜单提示）
-  rsMulRenMaskName               = '名称';
-  rsMulRenMaskCharAtPosXtoY      = '截取名称片段';
+  rsMulRenMaskName               = '文件名';
+  rsMulRenMaskCharAtPosXtoY      = '选择范围';
   rsMulRenMaskExtension          = '扩展名';
   rsMulRenMaskFullName           = '带路径和扩展名的完整文件名';
-  rsMulRenMaskFullNameCharAtPosXtoY = '截取完整文件名片段';
+  rsMulRenMaskFullNameCharAtPosXtoY = '选择完整文件名范围';
   rsMulRenMaskParent             = '父文件夹';
   rsMulRenMaskCounter            = '计数器';
   rsMulRenMaskGUID               = 'GUID';
