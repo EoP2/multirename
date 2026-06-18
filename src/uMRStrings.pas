@@ -10,7 +10,7 @@ interface
 
 const
   // 文件名样式下拉列表（竖线分隔，ParseLineToList 用）
-  rsMulRenFileNameStyleList = '不修改大小写|小写|大写|首字大写|每词首字大写';
+  rsMulRenFileNameStyleList = '不修改大小写|大写|小写|首字大写|单词首字大写';
 
   // 对话框标题 / 控件标签（直接对应 fmultirename.lfm 里的 Caption）
   rsMulRenFilename          = '文件名';

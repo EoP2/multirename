@@ -149,7 +149,7 @@ type
     pnlOptionsLeft: TPanel;
     gbName: TGroupBox;
     cbName: TComboBox;
-    btnNameN: TBitBtn;
+    btnNameN: TKASButton;
     btnNameNXY: TKASButton;
     btnNameFull: TKASButton;
     btnNameC: TKASButton;

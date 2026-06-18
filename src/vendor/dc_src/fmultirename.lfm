@@ -121,7 +121,7 @@ object frmMultiRename: TfrmMultiRename
           ParentFont = False
           TabOrder = 0
         end
-        object btnNameN: TBitBtn
+        object btnNameN: TKASButton
           AnchorSideLeft.Control = gbName
           AnchorSideTop.Control = cbName
           AnchorSideTop.Side = asrBottom
@@ -130,6 +130,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 100
           Anchors = [akTop, akLeft]
+          Caption = '[N] 文件名(&N)  '
           Action = actInsertNameN
           TabOrder = 1
           TabStop = True
@@ -158,6 +159,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 66
           Width = 100
           Anchors = [akTop, akLeft]
+          Caption = '[N#:#] 范围(&R)'
           Action = actInsertNameNXY
           TabOrder = 2
           TabStop = True
@@ -1024,7 +1026,7 @@ object frmMultiRename: TfrmMultiRename
     end
     object actClose: TAction
       Category = 'Generic'
-      Caption = '关闭(&C)'
+      Caption = '关闭'
       OnExecute = actExecute
     end
     object actInsertNameN: TAction
