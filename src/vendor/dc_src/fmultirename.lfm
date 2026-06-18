@@ -130,7 +130,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 100
           Anchors = [akTop, akLeft]
-          Caption = '[N] 文件名(&N)  '
+          Caption = '[N] 文件名(&N)'
           Action = actInsertNameN
           TabOrder = 1
           TabStop = True
@@ -249,7 +249,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 100
           Anchors = [akTop, akLeft]
-          Caption = '[C] 计数器(&C)  '
+          Caption = '[C] 计数器(&C)'
           Action = actInsertNameC
           TabOrder = 9
           TabStop = True
@@ -317,7 +317,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 100
           Anchors = [akTop, akLeft]
-          Caption = '[E] 扩展名(&E)  '
+          Caption = '[E] 扩展名(&E)'
           Action = actInsertExtE
           TabOrder = 1
           TabStop = True
@@ -346,7 +346,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 37
           Width = 100
           Anchors = [akTop, akLeft]
-          Caption = '[C] 计数器(&C)  '
+          Caption = '[C] 计数器(&C)'
           Action = actInsertExtC
           TabOrder = 3
           TabStop = True
