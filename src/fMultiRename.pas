@@ -2776,6 +2776,8 @@ end;
 { TfrmMultiRename.cm_InsertNameNXY }
 procedure TfrmMultiRename.cm_InsertNameNXY(const {%H-}Params: array of string);
 begin
+  FNameSelStart := cbName.SelStart + cbName.SelLength;
+  FExtSelStart  := cbExt.SelStart  + cbExt.SelLength;
   if FFiles.Count > 0 then
     DoXYMask(1, tfmFilename);
 end;
@@ -2815,8 +2817,6 @@ end;
 { TfrmMultiRename.cm_ShowNameDateMenu }
 procedure TfrmMultiRename.cm_ShowNameDateMenu(const {%H-}Params: array of string);
 begin
-  FNameSelStart := cbName.SelStart + cbName.SelLength;
-  FExtSelStart  := cbExt.SelStart  + cbExt.SelLength;
   pmFloatingMainMaskMenu.Items.Clear;
   BuildMaskMenuFromIndices(pmFloatingMainMaskMenu.Items, tfmFilename, [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]);
   PopupDynamicMenuAtThisControl(pmFloatingMainMaskMenu, btnNameDateMore);
@@ -2831,8 +2831,6 @@ end;
 { TfrmMultiRename.cm_ShowNameTimeMenu }
 procedure TfrmMultiRename.cm_ShowNameTimeMenu(const {%H-}Params: array of string);
 begin
-  FNameSelStart := cbName.SelStart + cbName.SelLength;
-  FExtSelStart  := cbExt.SelStart  + cbExt.SelLength;
   pmFloatingMainMaskMenu.Items.Clear;
   BuildMaskMenuFromIndices(pmFloatingMainMaskMenu.Items, tfmFilename, [21, 22, 23, 24, 25, 26]);
   PopupDynamicMenuAtThisControl(pmFloatingMainMaskMenu, btnNameTimeMore);
@@ -2847,6 +2845,8 @@ end;
 { TfrmMultiRename.cm_InsertExtEXY }
 procedure TfrmMultiRename.cm_InsertExtEXY(const {%H-}Params: array of string);
 begin
+  FNameSelStart := cbName.SelStart + cbName.SelLength;
+  FExtSelStart  := cbExt.SelStart  + cbExt.SelLength;
   if FFiles.Count > 0 then
     DoXYMask(6, tfmExtension);
 end;
