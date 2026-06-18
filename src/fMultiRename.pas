@@ -401,7 +401,7 @@ const
   CONFIG_NOTSAVED = False;
   CONFIG_SAVED = True;
 
-  NBMAXHELPERS = 28;
+  NBMAXHELPERS = 30;
 
 var
   //Sequence of operation to add a new mask:
@@ -441,7 +441,9 @@ var
     (sMenuItem: ''; sKeyword: '[nn]'; MenuActionStyle: masStraight; iMenuType: rmtuTime; iSourceOfInformation: soiTime),
     (sMenuItem: ''; sKeyword: '[s]'; MenuActionStyle: masStraight; iMenuType: rmtuTime; iSourceOfInformation: soiTime),
     (sMenuItem: ''; sKeyword: '[ss]'; MenuActionStyle: masStraight; iMenuType: rmtuTime; iSourceOfInformation: soiTime),
-    (sMenuItem: ''; sKeyword: '[hh][nn][ss]'; MenuActionStyle: masStraight; iMenuType: rmtuTime; iSourceOfInformation: soiTime)
+    (sMenuItem: ''; sKeyword: '[hh][nn][ss]'; MenuActionStyle: masStraight; iMenuType: rmtuTime; iSourceOfInformation: soiTime),
+    (sMenuItem: ''; sKeyword: '[[]'; MenuActionStyle: masStraight; iMenuType: rmtuFilename; iSourceOfInformation: soiFilename),
+    (sMenuItem: ''; sKeyword: '[]]'; MenuActionStyle: masStraight; iMenuType: rmtuFilename; iSourceOfInformation: soiFilename)
     );
 
 { TMultiRenamePreset.Create }
@@ -1302,6 +1304,8 @@ begin
     MaskHelpers[25].sMenuItem := rsMulRenMaskSec + ' ' + MaskHelpers[25].sKeyword;
     MaskHelpers[26].sMenuItem := rsMulRenMaskSec2Digits + ' ' + MaskHelpers[26].sKeyword;
     MaskHelpers[27].sMenuItem := rsMulRenMaskCompleteTime + ' ' + MaskHelpers[27].sKeyword;
+    MaskHelpers[28].sMenuItem := rsMulRenMaskLiteralLeftBracket  + ' ' + MaskHelpers[28].sKeyword;
+    MaskHelpers[29].sMenuItem := rsMulRenMaskLiteralRightBracket + ' ' + MaskHelpers[29].sKeyword;
   end;
 end;
 
@@ -2767,7 +2771,7 @@ end;
 procedure TfrmMultiRename.cm_ShowNameFullMenu(const {%H-}Params: array of string);
 begin
   pmFloatingMainMaskMenu.Items.Clear;
-  BuildMaskMenuFromIndices(pmFloatingMainMaskMenu.Items, tfmFilename, [2, 3, 4]);
+  BuildMaskMenuFromIndices(pmFloatingMainMaskMenu.Items, tfmFilename, [2, 3, 4, 28, 29]);
   PopupDynamicMenuAtThisControl(pmFloatingMainMaskMenu, btnNameFull);
 end;
 

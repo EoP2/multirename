@@ -48,6 +48,8 @@ const
   rsMulRenMaskSec                = '秒（3）';
   rsMulRenMaskSec2Digits         = '秒（03）';
   rsMulRenMaskCompleteTime       = '完整时间';
+  rsMulRenMaskLiteralLeftBracket  = '左方括号';
+  rsMulRenMaskLiteralRightBracket = '右方括号';
 
   // 操作消息
   rsMulRenWarningDuplicate  = '目标文件名重复：';
