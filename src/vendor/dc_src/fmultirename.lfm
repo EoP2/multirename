@@ -496,7 +496,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 0
           Width = 160
           Action = actInvokeEditor
-          Anchors = [akTop, akRight]
+          Anchors = [akTop, akRight, akBottom]
           AutoSize = True
           Margin = -1
           ParentFont = False
@@ -785,14 +785,14 @@ object frmMultiRename: TfrmMultiRename
         end
       end
       object cbLog: TCheckBox
-        AnchorSideLeft.Control = gbCounter
+        AnchorSideRight.Control = cbLogAppend
         AnchorSideTop.Control = gbCounter
         AnchorSideTop.Side = asrBottom
         Left = 5
         Height = 23
         Top = 190
         Width = 87
-        Anchors = [akTop, akLeft]
+        Anchors = [akTop, akRight]
         BorderSpacing.Top = 2
         Caption = '记录日志(&L)'
         OnClick = cbLogClick
@@ -836,15 +836,15 @@ object frmMultiRename: TfrmMultiRename
         OnChange = cbNameStyleChange
       end
       object cbLogAppend: TCheckBox
-        AnchorSideLeft.Control = cbLog
-        AnchorSideLeft.Side = asrBottom
+        AnchorSideRight.Control = pnlOptionsRight
+        AnchorSideRight.Side = asrBottom
         AnchorSideTop.Control = gbCounter
         AnchorSideTop.Side = asrBottom
         Left = 102
         Height = 23
         Top = 190
         Width = 75
-        Anchors = [akTop, akLeft]
+        Anchors = [akTop, akRight]
         BorderSpacing.Left = 10
         BorderSpacing.Top = 2
         Caption = '追加'
