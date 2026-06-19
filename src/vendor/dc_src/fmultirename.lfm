@@ -404,7 +404,6 @@ object frmMultiRename: TfrmMultiRename
           Width = 120
           Anchors = [akTop, akLeft]
           AutoSize = True
-          BorderSpacing.Top = 2
           Caption = '排序'
           ChildSizing.LeftRightSpacing = 4
           ChildSizing.TopBottomSpacing = 2
@@ -439,7 +438,6 @@ object frmMultiRename: TfrmMultiRename
           Width = 120
           Anchors = [akTop, akLeft, akRight]
           AutoSize = True
-          BorderSpacing.Top = 2
           Caption = '预设'
           ChildSizing.LeftRightSpacing = 4
           ChildSizing.TopBottomSpacing = 2
@@ -494,7 +492,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 322
           Height = 35
           Top = 0
-          Width = 160
+          Width = 200
           Action = actInvokeEditor
           Anchors = [akRight, akBottom]
           BorderSpacing.Left = 4
@@ -846,7 +844,7 @@ object frmMultiRename: TfrmMultiRename
         Top = 190
         Width = 75
         Anchors = [akTop, akLeft]
-        BorderSpacing.Left = 8
+        BorderSpacing.Left = 6
         BorderSpacing.Top = 2
         Caption = '追加'
         OnClick = cbLogClick
