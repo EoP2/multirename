@@ -489,8 +489,6 @@ object frmMultiRename: TfrmMultiRename
           end
         end
         object btnEditor: TBitBtn
-          AnchorSideLeft.Control = gbPresets
-          AnchorSideLeft.Side = asrBottom
           AnchorSideRight.Control = pnlSortPresets
           AnchorSideRight.Side = asrBottom
           Left = 322
