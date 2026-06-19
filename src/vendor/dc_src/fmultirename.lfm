@@ -427,6 +427,7 @@ object frmMultiRename: TfrmMultiRename
         Width = 120
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
+        Align = alBottom
         BorderSpacing.Top = 4
         Caption = '预设'
         ChildSizing.LeftRightSpacing = 4
