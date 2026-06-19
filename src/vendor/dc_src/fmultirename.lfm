@@ -96,6 +96,7 @@ object frmMultiRename: TfrmMultiRename
         Top = 0
         Width = 250
         Anchors = [akTop, akLeft, akRight]
+        Align = alLeft
         AutoSize = True
         Caption = '文件名'
         ChildSizing.LeftRightSpacing = 4
@@ -290,6 +291,7 @@ object frmMultiRename: TfrmMultiRename
         Top = 0
         Width = 250
         Anchors = [akTop, akRight]
+        Align = alClient
         AutoSize = True
         Caption = '扩展名'
         ChildSizing.LeftRightSpacing = 4
