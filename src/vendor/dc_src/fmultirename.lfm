@@ -400,7 +400,7 @@ object frmMultiRename: TfrmMultiRename
         object gbAddSort: TGroupBox
           Left = 0
           Height = 59
-          Top = 214
+          Top = 0
           Width = 120
           Anchors = [akTop, akLeft]
           AutoSize = True
@@ -435,7 +435,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideRight.Control = btnEditor
           Left = 130
           Height = 59
-          Top = 214
+          Top = 0
           Width = 120
           Anchors = [akTop, akLeft, akRight]
           AutoSize = True
@@ -491,8 +491,8 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideRight.Side = asrBottom
           Left = 322
           Height = 35
-          Top = 149
-          Width = 100
+          Top = 0
+          Width = 120
           Action = actInvokeEditor
           Anchors = [akTop, akRight]
           AutoSize = True
