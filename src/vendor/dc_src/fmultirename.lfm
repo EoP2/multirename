@@ -97,7 +97,6 @@ object frmMultiRename: TfrmMultiRename
         Width = 250
         Anchors = [akTop, akLeft, akRight]
         Align = alLeft
-        AutoSize = True
         Caption = '文件名'
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.HorizontalSpacing = 2
@@ -279,7 +278,7 @@ object frmMultiRename: TfrmMultiRename
         Left = 250
         Height = 210
         Top = 0
-        Width = 5
+        Width = 3
         ResizeStyle = rsLine
       end
       object gbExt: TGroupBox
@@ -292,7 +291,6 @@ object frmMultiRename: TfrmMultiRename
         Width = 250
         Anchors = [akTop, akRight]
         Align = alClient
-        AutoSize = True
         Caption = '扩展名'
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.HorizontalSpacing = 2
@@ -429,7 +427,6 @@ object frmMultiRename: TfrmMultiRename
         Width = 120
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
-        Align = alBottom
         BorderSpacing.Top = 4
         Caption = '预设'
         ChildSizing.LeftRightSpacing = 4
