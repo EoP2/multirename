@@ -80,11 +80,11 @@ object frmMultiRename: TfrmMultiRename
       Left = 0
       Height = 275
       Top = 0
-      Width = 535
+      Width = 540
       Align = alLeft
       BevelOuter = bvNone
       ClientHeight = 275
-      ClientWidth = 535
+      ClientWidth = 540
       ParentFont = False
       TabOrder = 0
       object gbName: TGroupBox
@@ -94,7 +94,7 @@ object frmMultiRename: TfrmMultiRename
         Left = 0
         Height = 210
         Top = 0
-        Width = 315
+        Width = 320
         Anchors = [akTop, akLeft, akRight]
         Align = alLeft
         Caption = '文件名'
@@ -102,7 +102,7 @@ object frmMultiRename: TfrmMultiRename
         ChildSizing.HorizontalSpacing = 2
         ChildSizing.VerticalSpacing = 2
         ClientHeight = 190
-        ClientWidth = 313
+        ClientWidth = 318
         ParentFont = False
         TabOrder = 0
         object cbName: TComboBox
@@ -113,7 +113,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 4
           Height = 35
           Top = 0
-          Width = 305
+          Width = 310
           Anchors = [akTop, akLeft, akRight]
           AutoSelect = False
           ItemHeight = 0
@@ -274,8 +274,8 @@ object frmMultiRename: TfrmMultiRename
           TabOrder = 10
         end
       end
-      object spltLeftSplitter: TSplitter
-        Left = 250
+      object spltNameExtSplitter: TSplitter
+        Left = 320
         Height = 210
         Top = 0
         Width = 2
@@ -378,100 +378,121 @@ object frmMultiRename: TfrmMultiRename
           TabOrder = 4
         end
       end
-      object gbAddSort: TGroupBox
+      object pnlSortPresets: TPanel
         AnchorSideLeft.Control = pnlOptionsLeft
-        AnchorSideTop.Control = gbExt
-        AnchorSideTop.Side = asrBottom
-        Left = 0
-        Height = 59
-        Top = 214
-        Width = 120
-        Anchors = [akTop, akLeft]
-        AutoSize = True
-        Align = alBottom
-        BorderSpacing.Top = 4
-        Caption = '排序'
-        ChildSizing.LeftRightSpacing = 4
-        ChildSizing.TopBottomSpacing = 2
-        ClientWidth = 118
-        ParentFont = False
-        TabOrder = 2
-        object cmbAddSort: TComboBox
-          AnchorSideLeft.Control = gbAddSort
-          AnchorSideTop.Control = gbAddSort
-          AnchorSideRight.Control = gbAddSort
-          AnchorSideRight.Side = asrBottom
-          Left = 4
-          Height = 35
-          Top = 2
-          Width = 110
-          Anchors = [akTop, akLeft, akRight]
-          DropDownCount = 8
-          ItemHeight = 0
-          OnChange = cmbAddSortChange
-          ParentFont = False
-          Style = csDropDownList
-          TabOrder = 0
-        end
-      end
-      object gbPresets: TGroupBox
-        AnchorSideLeft.Control = gbAddSort
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = gbExt
+        AnchorSideTop.Control = gbName
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlOptionsLeft
         AnchorSideRight.Side = asrBottom
-        Left = 130
-        Height = 59
+        Left = 0
+        Height = 63
         Top = 214
-        Width = 120
+        Width = 540
         Anchors = [akTop, akLeft, akRight]
+        Align = alBottom
         AutoSize = True
+        BevelOuter = bvNone
         BorderSpacing.Top = 4
-        Caption = '预设'
-        ChildSizing.LeftRightSpacing = 4
-        ChildSizing.TopBottomSpacing = 2
-        ChildSizing.HorizontalSpacing = 2
-        ClientHeight = 39
-        ClientWidth = 118
+        ClientHeight = 63
+        ClientWidth = 540
         ParentFont = False
-        TabOrder = 3
-        object cbPresets: TComboBox
-          AnchorSideLeft.Control = gbPresets
-          AnchorSideTop.Control = gbPresets
-          AnchorSideRight.Control = btnPresets
-          AnchorSideBottom.Side = asrBottom
-          Left = 4
-          Height = 35
-          Top = 2
-          Width = 92
-          Anchors = [akTop, akLeft, akRight]
-          DropDownCount = 15
-          ItemHeight = 0
-          OnChange = cbPresetsChange
-          OnCloseUp = cbPresetsCloseUp
-          ParentFont = False
-          Style = csDropDownList
-          TabOrder = 1
-        end
-        object btnPresets: TKASButton
-          AnchorSideTop.Control = cbPresets
-          AnchorSideRight.Control = gbPresets
-          AnchorSideRight.Side = asrBottom
-          AnchorSideBottom.Control = cbPresets
-          AnchorSideBottom.Side = asrBottom
-          Left = 98
-          Height = 35
-          Top = 2
-          Width = 16
-          Anchors = [akTop, akRight, akBottom]
+        TabOrder = 2
+        object gbAddSort: TGroupBox
+          AnchorSideLeft.Control = pnlOptionsLeft
+          AnchorSideTop.Control = gbExt
+          AnchorSideTop.Side = asrBottom
+          Left = 0
+          Height = 59
+          Top = 214
+          Width = 120
+          Anchors = [akTop, akLeft]
           AutoSize = True
-          Constraints.MinWidth = 16
-          ParentBidiMode = False
+          Align = alLeft
+          BorderSpacing.Top = 4
+          Caption = '排序'
+          ChildSizing.LeftRightSpacing = 4
+          ChildSizing.TopBottomSpacing = 2
+          ClientWidth = 118
           ParentFont = False
           TabOrder = 0
-          TabStop = True
-          ShowCaption = True
+          object cmbAddSort: TComboBox
+            AnchorSideLeft.Control = gbAddSort
+            AnchorSideTop.Control = gbAddSort
+            AnchorSideRight.Control = gbAddSort
+            AnchorSideRight.Side = asrBottom
+            Left = 4
+            Height = 35
+            Top = 2
+            Width = 110
+            Anchors = [akTop, akLeft, akRight]
+            DropDownCount = 8
+            ItemHeight = 0
+            OnChange = cmbAddSortChange
+            ParentFont = False
+            Style = csDropDownList
+            TabOrder = 0
+          end
+        end
+        object gbPresets: TGroupBox
+          AnchorSideLeft.Control = gbAddSort
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = gbExt
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = pnlOptionsLeft
+          AnchorSideRight.Side = asrBottom
+          Left = 130
+          Height = 59
+          Top = 214
+          Width = 120
+          Anchors = [akTop, akLeft, akRight]
+          AutoSize = True
+          Align = alClient
+          BorderSpacing.Top = 4
+          Caption = '预设'
+          ChildSizing.LeftRightSpacing = 4
+          ChildSizing.TopBottomSpacing = 2
+          ChildSizing.HorizontalSpacing = 2
+          ClientHeight = 39
+          ClientWidth = 118
+          ParentFont = False
+          TabOrder = 1
+          object cbPresets: TComboBox
+            AnchorSideLeft.Control = gbPresets
+            AnchorSideTop.Control = gbPresets
+            AnchorSideRight.Control = btnPresets
+            AnchorSideBottom.Side = asrBottom
+            Left = 4
+            Height = 35
+            Top = 2
+            Width = 92
+            Anchors = [akTop, akLeft, akRight]
+            DropDownCount = 15
+            ItemHeight = 0
+            OnChange = cbPresetsChange
+            OnCloseUp = cbPresetsCloseUp
+            ParentFont = False
+            Style = csDropDownList
+            TabOrder = 1
+          end
+          object btnPresets: TKASButton
+            AnchorSideTop.Control = cbPresets
+            AnchorSideRight.Control = gbPresets
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = cbPresets
+            AnchorSideBottom.Side = asrBottom
+            Left = 98
+            Height = 35
+            Top = 2
+            Width = 16
+            Anchors = [akTop, akRight, akBottom]
+            AutoSize = True
+            Constraints.MinWidth = 16
+            ParentBidiMode = False
+            ParentFont = False
+            TabOrder = 0
+            TabStop = True
+            ShowCaption = True
+          end
         end
       end
     end
