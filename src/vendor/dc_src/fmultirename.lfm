@@ -785,14 +785,14 @@ object frmMultiRename: TfrmMultiRename
         end
       end
       object cbLog: TCheckBox
-        AnchorSideRight.Control = cbLogAppend
+        AnchorSideLeft.Control = gbCounter
         AnchorSideTop.Control = gbCounter
         AnchorSideTop.Side = asrBottom
         Left = 5
         Height = 23
         Top = 190
         Width = 87
-        Anchors = [akTop, akRight]
+        Anchors = [akTop, akLeft]
         BorderSpacing.Top = 2
         Caption = '记录日志(&L)'
         OnClick = cbLogClick
@@ -836,15 +836,14 @@ object frmMultiRename: TfrmMultiRename
         OnChange = cbNameStyleChange
       end
       object cbLogAppend: TCheckBox
-        AnchorSideRight.Control = pnlOptionsRight
-        AnchorSideRight.Side = asrBottom
+        AnchorSideLeft.Control = btnViewRenameLogFile
         AnchorSideTop.Control = gbCounter
         AnchorSideTop.Side = asrBottom
         Left = 102
         Height = 23
         Top = 190
         Width = 75
-        Anchors = [akTop, akRight]
+        Anchors = [akTop, akLeft]
         BorderSpacing.Left = 10
         BorderSpacing.Top = 2
         Caption = '追加'
