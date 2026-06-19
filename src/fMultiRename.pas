@@ -1366,6 +1366,8 @@ var
   sSourceToSelectFromText, sPrefix: string;
   sResultingMaskValue: string = '';
   iMaskHelperIndex: integer;
+  edChoose: TComboBox;
+  iSavedSelStart, iSavedSelLength: integer;
 begin
   iMaskHelperIndex := TMenuItem(Sender).Tag shr 16;
 
@@ -1380,8 +1382,20 @@ begin
       end;
     end;
 
+    // 弹出模态对话框前先保存光标位置，原因同 DoXYMask
+    if tTargetForMask(TMenuItem(Sender).Tag and iTARGETMASK) = tfmFilename then
+      edChoose := cbName
+    else
+      edChoose := cbExt;
+    iSavedSelStart  := edChoose.SelStart;
+    iSavedSelLength := edChoose.SelLength;
+
     if ShowSelectPathRangeDlg(Self, Caption, sSourceToSelectFromText, sPrefix, sResultingMaskValue) then
+    begin
+      edChoose.SelStart  := iSavedSelStart;
+      edChoose.SelLength := iSavedSelLength;
       InsertMask(sResultingMaskValue, tTargetForMask(TMenuItem(Sender).Tag and iTARGETMASK));
+    end;
   end;
 end;
 
@@ -1396,6 +1410,8 @@ procedure TfrmMultiRename.DoXYMask(iIdx: integer; iTarget: tTargetForMask);
 var
   sSourceToSelectFromText, sPrefix: string;
   sResultingMaskValue: string = '';
+  edChoose: TComboBox;
+  iSavedSelStart, iSavedSelLength: integer;
 begin
   if iIdx >= length(MaskHelpers) then Exit;
   sSourceToSelectFromText := '';
@@ -1416,8 +1432,22 @@ begin
       sPrefix := 'A';
     end;
   end;
+
+  // 弹出模态对话框前先保存光标位置：失焦后 Win32/Cocoa 会把
+  // TComboBox 内容全选，若不保存，InsertMask 会误判为"替换选中内容"
+  if iTarget = tfmFilename then
+    edChoose := cbName
+  else
+    edChoose := cbExt;
+  iSavedSelStart  := edChoose.SelStart;
+  iSavedSelLength := edChoose.SelLength;
+
   if ShowSelectTextRangeDlg(Self, Caption, sSourceToSelectFromText, sPrefix, sResultingMaskValue) then
+  begin
+    edChoose.SelStart  := iSavedSelStart;
+    edChoose.SelLength := iSavedSelLength;
     InsertMask(sResultingMaskValue, iTarget);
+  end;
 end;
 
 { TfrmMultiRename.BuildMaskMenuFromIndices }
@@ -1449,12 +1479,25 @@ end;
 procedure TfrmMultiRename.MenuItemVariableMaskClick(Sender: TObject);
 var
   sVariableName: string;
+  edChoose: TComboBox;
+  iSavedSelStart, iSavedSelLength: integer;
 begin
   sVariableName := rsSimpleWordVariable;
+
+  // 弹出模态对话框前先保存光标位置，原因同 DoXYMask
+  if tTargetForMask(TMenuItem(Sender).Tag and iTARGETMASK) = tfmFilename then
+    edChoose := cbName
+  else
+    edChoose := cbExt;
+  iSavedSelStart  := edChoose.SelStart;
+  iSavedSelLength := edChoose.SelLength;
+
   if InputQuery(rsMulRenDefineVariableName, rsMulRenEnterNameForVar, sVariableName) then
   begin
     if sVariableName = '' then
       sVariableName := rsSimpleWordVariable;
+    edChoose.SelStart  := iSavedSelStart;
+    edChoose.SelLength := iSavedSelLength;
     InsertMask('[V:' + sVariableName + ']', tTargetForMask(TMenuItem(Sender).Tag and iTARGETMASK));
   end;
 end;
@@ -2868,4 +2911,3 @@ initialization
   TFormCommands.RegisterCommandsForm(TfrmMultiRename, HotkeysCategoryMultiRename, @rsHotkeyCategoryMultiRename);
 
 end.
-
