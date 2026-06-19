@@ -94,7 +94,7 @@ object frmMultiRename: TfrmMultiRename
         Left = 0
         Height = 210
         Top = 0
-        Width = 300
+        Width = 315
         Anchors = [akTop, akLeft, akRight]
         Align = alLeft
         Caption = '文件名'
@@ -102,7 +102,7 @@ object frmMultiRename: TfrmMultiRename
         ChildSizing.HorizontalSpacing = 2
         ChildSizing.VerticalSpacing = 2
         ClientHeight = 190
-        ClientWidth = 298
+        ClientWidth = 313
         ParentFont = False
         TabOrder = 0
         object cbName: TComboBox
@@ -113,7 +113,7 @@ object frmMultiRename: TfrmMultiRename
           Left = 4
           Height = 35
           Top = 0
-          Width = 290
+          Width = 305
           Anchors = [akTop, akLeft, akRight]
           AutoSelect = False
           ItemHeight = 0
@@ -278,7 +278,7 @@ object frmMultiRename: TfrmMultiRename
         Left = 250
         Height = 210
         Top = 0
-        Width = 3
+        Width = 2
         ResizeStyle = rsLine
       end
       object gbExt: TGroupBox
