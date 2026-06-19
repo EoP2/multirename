@@ -398,9 +398,6 @@ object frmMultiRename: TfrmMultiRename
         ParentFont = False
         TabOrder = 2
         object gbAddSort: TGroupBox
-          AnchorSideLeft.Control = pnlOptionsLeft
-          AnchorSideTop.Control = gbExt
-          AnchorSideTop.Side = asrBottom
           Left = 0
           Height = 59
           Top = 214
@@ -436,10 +433,7 @@ object frmMultiRename: TfrmMultiRename
         object gbPresets: TGroupBox
           AnchorSideLeft.Control = gbAddSort
           AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = gbExt
-          AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Control = pnlOptionsLeft
-          AnchorSideRight.Side = asrBottom
+          AnchorSideRight.Control = btnEditor
           Left = 130
           Height = 59
           Top = 214
@@ -493,6 +487,23 @@ object frmMultiRename: TfrmMultiRename
             TabStop = True
             ShowCaption = True
           end
+        end
+        object btnEditor: TBitBtn
+          AnchorSideLeft.Control = gbPresets
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideRight.Control = pnlSortPresets
+          AnchorSideRight.Side = asrBottom
+          Left = 322
+          Height = 35
+          Top = 149
+          Width = 199
+          Action = actInvokeEditor
+          Anchors = [akTop, akLeft, akRight]
+          AutoSize = True
+          BorderSpacing.Top = 8
+          Margin = -1
+          ParentFont = False
+          TabOrder = 2
         end
       end
     end
@@ -666,24 +677,6 @@ object frmMultiRename: TfrmMultiRename
           end
         end
       end
-      object btnEditor: TBitBtn
-        AnchorSideLeft.Control = gbCounter
-        AnchorSideTop.Control = gbCounter
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = gbCounter
-        AnchorSideRight.Side = asrBottom
-        Left = 322
-        Height = 35
-        Top = 149
-        Width = 199
-        Action = actInvokeEditor
-        Anchors = [akTop, akLeft, akRight]
-        AutoSize = True
-        BorderSpacing.Top = 8
-        Margin = -1
-        ParentFont = False
-        TabOrder = 2
-      end
       object gbCounter: TGroupBox
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = pnlOptionsRight
@@ -806,7 +799,7 @@ object frmMultiRename: TfrmMultiRename
         Caption = '记录日志(&L)'
         OnClick = cbLogClick
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 2
       end
       object btnViewRenameLogFile: TSpeedButton
         AnchorSideTop.Control = fneRenameLogFileFilename
@@ -841,7 +834,7 @@ object frmMultiRename: TfrmMultiRename
         BorderSpacing.Left = 5
         MaxLength = 0
         ParentFont = False
-        TabOrder = 5
+        TabOrder = 4
         OnChange = cbNameStyleChange
       end
       object cbLogAppend: TCheckBox
@@ -858,7 +851,7 @@ object frmMultiRename: TfrmMultiRename
         Caption = '追加'
         OnClick = cbLogClick
         ParentFont = False
-        TabOrder = 4
+        TabOrder = 3
       end
     end
   end
