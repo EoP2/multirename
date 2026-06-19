@@ -494,7 +494,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 149
           Width = 100
           Action = actInvokeEditor
-          Anchors = [akTop, akLeft, akRight]
+          Anchors = [akTop, akRight]
           AutoSize = True
           BorderSpacing.Top = 8
           Margin = -1
