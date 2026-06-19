@@ -274,6 +274,13 @@ object frmMultiRename: TfrmMultiRename
           TabOrder = 10
         end
       end
+      object spltLeftSplitter: TSplitter
+        Left = 250
+        Height = 210
+        Top = 0
+        Width = 5
+        ResizeStyle = rsLine
+      end
       object gbExt: TGroupBox
         AnchorSideTop.Control = pnlOptionsLeft
         AnchorSideRight.Control = pnlOptionsLeft
