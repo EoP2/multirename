@@ -496,7 +496,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 0
           Width = 160
           Action = actInvokeEditor
-          Anchors = [akTop, akRight, akBottom]
+          Anchors = [akRight, akBottom]
           AutoSize = True
           Margin = -1
           ParentFont = False
@@ -844,7 +844,6 @@ object frmMultiRename: TfrmMultiRename
         Top = 190
         Width = 75
         Anchors = [akTop, akLeft]
-        BorderSpacing.Left = 10
         BorderSpacing.Top = 2
         Caption = '追加'
         OnClick = cbLogClick
