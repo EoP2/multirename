@@ -392,7 +392,7 @@ object frmMultiRename: TfrmMultiRename
         Align = alBottom
         AutoSize = True
         BevelOuter = bvNone
-        BorderSpacing.Top = 2
+        BorderSpacing.Top = 0
         ClientHeight = 63
         ClientWidth = 540
         ParentFont = False
@@ -691,7 +691,7 @@ object frmMultiRename: TfrmMultiRename
         ChildSizing.LeftRightSpacing = 4
         ChildSizing.TopBottomSpacing = 2
         ChildSizing.HorizontalSpacing = 4
-        ChildSizing.VerticalSpacing = 4
+        ChildSizing.VerticalSpacing = 2
         ChildSizing.EnlargeHorizontal = crsScaleChilds
         ChildSizing.ShrinkHorizontal = crsScaleChilds
         ChildSizing.ShrinkVertical = crsScaleChilds
