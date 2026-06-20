@@ -76,6 +76,7 @@ type
     WinHeight               : integer;
     WinMaximized            : boolean;
     PnlOptionsLeftWidth     : integer;  // 左侧选项面板宽度
+    GbNameWidth             : integer;  // "文件名"分组宽度（文件名/扩展名分隔条位置）
     // ── 预设（原 presets.xml）────────────────────────────────
     LastPreset              : string;
     Presets                 : TList;   // list of TPresetData, owned by this object
@@ -183,6 +184,7 @@ begin
   WinHeight           := 0;
   WinMaximized        := False;
   PnlOptionsLeftWidth := 0;
+  GbNameWidth         := 0;
   // 预设
   LastPreset := '';
   Presets    := TList.Create;
@@ -262,6 +264,7 @@ begin
     WinHeight           := Ini.ReadInteger('Session', 'WinHeight',           0);
     WinMaximized        := Ini.ReadBool   ('Session', 'WinMaximized',        False);
     PnlOptionsLeftWidth := Ini.ReadInteger('Session', 'PnlOptionsLeftWidth', 0);
+    GbNameWidth         := Ini.ReadInteger('Session', 'GbNameWidth',         0);
 
     // ── 历史记录 ──────────────────────────────────────────────
     NameMaskHistory.Clear;
@@ -341,6 +344,7 @@ begin
     Ini.WriteInteger('Session', 'WinHeight',           WinHeight);
     Ini.WriteBool   ('Session', 'WinMaximized',        WinMaximized);
     Ini.WriteInteger('Session', 'PnlOptionsLeftWidth', PnlOptionsLeftWidth);
+    Ini.WriteInteger('Session', 'GbNameWidth',         GbNameWidth);
 
     // ── 历史记录 ──────────────────────────────────────────────
     Ini.WriteInteger('NameMaskHistory', 'Count', NameMaskHistory.Count);
