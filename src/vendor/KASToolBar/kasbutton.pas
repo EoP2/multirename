@@ -227,7 +227,7 @@ begin
 
   if FShowCaption and (Caption <> EmptyStr) then
   begin
-    TextFlags := DT_CENTER or DT_VCENTER;
+    TextFlags := DT_CENTER or DT_VCENTER or DT_SINGLELINE;
     if UseRightToLeftReading then begin
       TextFlags := TextFlags or DT_RTLREADING;
     end;
