@@ -486,7 +486,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideBottom.Control = gbPresets
           AnchorSideBottom.Side = asrBottom
           Left = 322
-          Height = 35
+          Height = 40
           Top = 0
           Width = 100
           Action = actInvokeEditor
@@ -823,7 +823,7 @@ object frmMultiRename: TfrmMultiRename
         ButtonWidth = 23
         NumGlyphs = 1
         Anchors = [akTop, akLeft, akRight]
-        BorderSpacing.Left = 5
+        BorderSpacing.Left = 4
         MaxLength = 0
         ParentFont = False
         TabOrder = 4
