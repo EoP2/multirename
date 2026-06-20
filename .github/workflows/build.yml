@@ -61,7 +61,7 @@ jobs:
           foreach ($f in @("fmultirename.lfm","fmultirenamewait.pas","fmultirenamewait.lfm",
               "fselecttextrange.pas","fselecttextrange.lfm","fselectpathrange.pas","fselectpathrange.lfm",
               "fsortanything.pas","fsortanything.lfm","uregexpra.pas",
-              "uformcommands.pas","uhotkeymanager.pas","uconvencoding.pas","udebug.pas")) {
+              "uformcommands.pas","uconvencoding.pas")) {
             Fetch "$B/src/$f" "src/vendor/dc_src/$f"
           }
           # 无条件下载为大写文件名，并删除小写版本（无论是否已存在）
@@ -69,7 +69,6 @@ jobs:
           Invoke-WebRequest "$B/src/uregexprw.pas" -OutFile "src/vendor/dc_src/uRegExprW.pas"
           Remove-Item -Force "src/vendor/dc_src/uregexprw.pas" -ErrorAction SilentlyContinue
 
-          Fetch "$B/src/platform/ukeyboard.pas" "src/vendor/dc_src/ukeyboard.pas"
           Copy-Item "src/vendor/dc_src/fmultirename.lfm" "src/fMultiRename.lfm" -Force
 
       - name: Compile manifest resource
