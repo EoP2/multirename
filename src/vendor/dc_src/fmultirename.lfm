@@ -264,7 +264,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 66
           Width = 100
           Anchors = [akTop, akLeft]
-          BorderSpacing.Bottom = 2
+          BorderSpacing.Bottom = 0
           ItemHeight = 0
           OnChange = cbNameStyleChange
           ParentFont = False
@@ -366,7 +366,6 @@ object frmMultiRename: TfrmMultiRename
           Top = 66
           Width = 100
           Anchors = [akTop, akLeft]
-          BorderSpacing.Bottom = 2
           ItemHeight = 0
           OnChange = cbNameStyleChange
           ParentFont = False
