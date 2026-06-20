@@ -72,6 +72,10 @@ jobs:
           Fetch "$B/src/platform/ukeyboard.pas" "src/vendor/dc_src/ukeyboard.pas"
           Copy-Item "src/vendor/dc_src/fmultirename.lfm" "src/fMultiRename.lfm" -Force
 
+      - name: Compile manifest resource
+        shell: bash
+        run: windres multirename.rc -O coff -o multirename.res
+        
       - name: Install DC packages
         run: |
           lazbuild src\vendor\doublecmd\doublecmd_common.lpk
