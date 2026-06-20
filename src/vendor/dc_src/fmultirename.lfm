@@ -276,7 +276,7 @@ object frmMultiRename: TfrmMultiRename
         Left = 320
         Height = 210
         Top = 0
-        Width = 2
+        Width = 4
         ResizeStyle = rsLine
       end
       object gbExt: TGroupBox
@@ -486,7 +486,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideBottom.Control = gbPresets
           AnchorSideBottom.Side = asrBottom
           Left = 322
-          Height = 40
+          Height = 42
           Top = 0
           Width = 100
           Action = actInvokeEditor
