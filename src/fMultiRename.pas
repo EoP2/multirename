@@ -650,6 +650,7 @@ begin
   if MRConfig.WinTop    > 0 then Top    := MRConfig.WinTop;
   if MRConfig.WinMaximized then WindowState := wsMaximized;
   if MRConfig.PnlOptionsLeftWidth > 0 then pnlOptionsLeft.Width := MRConfig.PnlOptionsLeftWidth;
+  if MRConfig.GbNameWidth > 0 then gbName.Width := MRConfig.GbNameWidth;
 
   // 从 MRConfig 恢复路径范围分隔符（供 fSelectPathRange 对话框使用）
   gMulRenPathRangeSeparator := MRConfig.PathRangeSeparator;
@@ -697,6 +698,7 @@ begin
   // 最大化时不覆盖 Normal 尺寸，下次恢复后仍能还原为合理大小
   MRConfig.WinMaximized        := (WindowState = wsMaximized);
   MRConfig.PnlOptionsLeftWidth := pnlOptionsLeft.Width;
+  MRConfig.GbNameWidth         := gbName.Width;
   if WindowState = wsNormal then
   begin
     MRConfig.WinLeft   := Left;
