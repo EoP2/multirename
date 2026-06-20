@@ -126,7 +126,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideTop.Control = cbName
           AnchorSideTop.Side = asrBottom
           Left = 4
-          Height = 27
+          Height = 26
           Top = 37
           Width = 100
           Anchors = [akTop, akLeft]
@@ -141,7 +141,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideTop.Control = cbName
           AnchorSideTop.Side = asrBottom
           Left = 64
-          Height = 27
+          Height = 26
           Top = 66
           Width = 15
           Anchors = [akTop, akLeft]
@@ -155,7 +155,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideTop.Control = btnNameN
           AnchorSideTop.Side = asrBottom
           Left = 4
-          Height = 27
+          Height = 26
           Top = 66
           Width = 100
           Anchors = [akTop, akLeft]
@@ -170,7 +170,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideTop.Control = btnNameFull
           AnchorSideTop.Side = asrBottom
           Left = 118
-          Height = 27
+          Height = 26
           Top = 37
           Width = 15
           Anchors = [akTop, akLeft]
@@ -185,7 +185,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideTop.Control = cbName
           AnchorSideTop.Side = asrBottom
           Left = 142
-          Height = 27
+          Height = 26
           Top = 37
           Width = 70
           Anchors = [akTop, akLeft]
@@ -200,7 +200,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideTop.Control = cbName
           AnchorSideTop.Side = asrBottom
           Left = 172
-          Height = 27
+          Height = 26
           Top = 37
           Width = 15
           Anchors = [akTop, akLeft]
@@ -215,7 +215,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideTop.Control = btnNameDate
           AnchorSideTop.Side = asrBottom
           Left = 196
-          Height = 27
+          Height = 26
           Top = 66
           Width = 70
           Anchors = [akTop, akLeft]
@@ -230,7 +230,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideTop.Control = btnNameDateMore
           AnchorSideTop.Side = asrBottom
           Left = 226
-          Height = 27
+          Height = 26
           Top = 66
           Width = 15
           Anchors = [akTop, akLeft]
@@ -245,7 +245,7 @@ object frmMultiRename: TfrmMultiRename
           AnchorSideTop.Control = cbName
           AnchorSideTop.Side = asrBottom
           Left = 88
-          Height = 27
+          Height = 26
           Top = 37
           Width = 100
           Anchors = [akTop, akLeft]
@@ -366,7 +366,7 @@ object frmMultiRename: TfrmMultiRename
           Top = 66
           Width = 100
           Anchors = [akTop, akLeft]
-          BorderSpacing.Bottom = 2
+          BorderSpacing.Bottom = 0
           ItemHeight = 0
           OnChange = cbNameStyleChange
           ParentFont = False
