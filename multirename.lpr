@@ -15,6 +15,8 @@ uses
   uMRConfig,
   uMRApp;
 
+{$R *.res}
+
 var
   Form1: TfrmMultiRename;
   I: Integer;
