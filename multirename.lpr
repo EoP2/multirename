@@ -1,6 +1,9 @@
 program multirename;
 
 {$mode objfpc}{$H+}
+{$IFDEF MSWINDOWS}
+{$R multirename.res}
+{$ENDIF}
 
 uses
   {$IFDEF UNIX}
@@ -15,14 +18,13 @@ uses
   uMRConfig,
   uMRApp;
 
-{$R *.res}
-
 var
   Form1: TfrmMultiRename;
   I: Integer;
 
 begin
   Application.Initialize;
+  Application.Scaled := True;
   Application.Title := '批量重命名';
 
   // 初始化配置（从可执行文件所在目录读取）

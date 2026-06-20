@@ -11,10 +11,6 @@
       <Title Value="批量重命名"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
-      <UseXPManifest Value="True"/>
-      <XPManifest>
-        <DpiAware Value="True"/>
-      </XPManifest>
     </General>
     <BuildModes Count="2">
       <Item1 Name="Debug" Default="True"/>
