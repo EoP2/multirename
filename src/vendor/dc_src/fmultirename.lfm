@@ -258,12 +258,13 @@ object frmMultiRename: TfrmMultiRename
         object cbNameMaskStyle: TComboBox
           AnchorSideLeft.Control = btnNameTimeMore
           AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = btnNameTimeMore
+          AnchorSideBottom.Control = gbName
+          AnchorSideBottom.Side = asrBottom
           Left = 4
           Height = 27
           Top = 66
           Width = 100
-          Anchors = [akTop, akLeft]
+          Anchors = [akBottom, akLeft]
           ItemHeight = 0
           OnChange = cbNameStyleChange
           ParentFont = False
