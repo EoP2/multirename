@@ -611,7 +611,7 @@ begin
     end;
 
   btnViewRenameLogFile.Action := actViewRenameLogFile;
-  btnViewRenameLogFile.Caption := '查看日志';
+  btnViewRenameLogFile.Caption := rsMulRenViewLog;
   btnViewRenameLogFile.Width := 60;
   btnViewRenameLogFile.Hint := actViewRenameLogFile.Caption;
   btnPresets.Action := actShowPresetsMenu;
@@ -640,11 +640,11 @@ begin
   if MRConfig.GbNameWidth > 0 then gbName.Width := MRConfig.GbNameWidth;
 
   // 排序下拉列表
-  cmbAddSort.Items.Add('名称升序');
-  cmbAddSort.Items.Add('名称降序');
-  cmbAddSort.Items.Add('时间升序');
-  cmbAddSort.Items.Add('时间降序');
-  cmbAddSort.Items.Add('不排序');
+  cmbAddSort.Items.Add(rsMulRenSortByNameAsc);
+  cmbAddSort.Items.Add(rsMulRenSortByNameDesc);
+  cmbAddSort.Items.Add(rsMulRenSortByTimeAsc);
+  cmbAddSort.Items.Add(rsMulRenSortByTimeDesc);
+  cmbAddSort.Items.Add(rsMulRenSortNone);
   cmbAddSort.ItemIndex := Ord(MRConfig.AddSortOrder);
 
   // btnConfig 改为添加文件按钮
@@ -2186,7 +2186,7 @@ end;
 procedure TfrmMultiRename.cm_Config(const {%H-}Params: array of string);
 begin
   // [独立版] 配置窗口待实现，暂时弹提示
-  MessageDlg('配置功能待实现', mtInformation, [mbOK], 0);
+  MessageDlg(rsMulRenConfigNotImpl, mtInformation, [mbOK], 0);
 end;
 
 { TfrmMultiRename.cm_AddFiles }
@@ -2199,7 +2199,7 @@ begin
   dlg := TOpenDialog.Create(Self);
   try
     dlg.Options := dlg.Options + [ofAllowMultiSelect, ofFileMustExist];
-    dlg.Title   := '选择文件';
+    dlg.Title   := rsMulRenSelectFile;
     if dlg.Execute then
     begin
       SetLength(Paths, dlg.Files.Count);
@@ -2464,7 +2464,7 @@ begin
         // 有失败时弹窗汇报（与 DC 原版行为一致）
         if FailCount > 0 then
           MessageDlg(
-            Format('重命名失败：%d 个文件' + LineEnding + LineEnding + '%s',
+            Format(rsMulRenRenameFailed + LineEnding + LineEnding + '%s',
                    [FailCount, FailMessages.Text]),
             mtError, [mbOK], 0);
       finally

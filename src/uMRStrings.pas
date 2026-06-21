@@ -19,6 +19,8 @@ const
   rsMulRenDate              = '日期';
   rsMulRenTime              = '时间';
   rsMulRenPlugins           = '插件';   // 独立版不显示此菜单，保留常量避免编译报错
+  rsMulRenViewLog           = '查看日志';
+  rsMulRenSelectFile        = '选择文件';
 
   // Mask token 描述（菜单提示）
   rsMulRenMaskName               = '文件名';
@@ -51,6 +53,13 @@ const
   rsMulRenMaskLiteralLeftBracket  = '左方括号';
   rsMulRenMaskLiteralRightBracket = '右方括号';
 
+  // 排序下拉列表
+  rsMulRenSortByNameAsc  = '名称升序';
+  rsMulRenSortByNameDesc = '名称降序';
+  rsMulRenSortByTimeAsc  = '时间升序';
+  rsMulRenSortByTimeDesc = '时间降序';
+  rsMulRenSortNone       = '不排序';
+
   // 操作消息
   rsMulRenWarningDuplicate  = '目标文件名重复：';
   rsMulRenAutoRename        = '是否自动重命名冲突文件？';
@@ -67,12 +76,14 @@ const
   rsMulRenEnterValueForVar          = '为变量 [V:%s] 输入值';
   rsMulRenDefineVariableName        = '定义变量名称';
   rsMulRenDefineVariableValue       = '定义变量值';
+  rsMulRenConfigNotImpl             = '配置功能待实现';
 
   // 错误消息（来自 uLng）
   rsMsgErrRegExpSyntax    = '正则表达式语法错误：%s';
   rsMsgFileNotFound       = '文件未找到：%s';
   rsMsgPresetAlreadyExists= '预设已存在';
   rsMsgPresetConfigDelete = '确定要删除预设"%s"吗？';
+  rsMulRenRenameFailed    = '重命名失败：%d 个文件';
 
   // 杂项
   rsSimpleWordVariable = '变量';
