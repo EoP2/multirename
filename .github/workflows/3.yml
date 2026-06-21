@@ -1,4 +1,4 @@
-name: 多平台
+name: Build MultiRename
 
 on:
   workflow_dispatch:
@@ -61,7 +61,7 @@ jobs:
           foreach ($f in @("fmultirename.lfm","fmultirenamewait.pas","fmultirenamewait.lfm",
               "fselecttextrange.pas","fselecttextrange.lfm","fselectpathrange.pas","fselectpathrange.lfm",
               "fsortanything.pas","fsortanything.lfm","uregexpra.pas",
-              "uformcommands.pas","uhotkeymanager.pas","uconvencoding.pas","udebug.pas")) {
+              "uformcommands.pas","uconvencoding.pas")) {
             Fetch "$B/src/$f" "src/vendor/dc_src/$f"
           }
           # 无条件下载为大写文件名，并删除小写版本（无论是否已存在）
@@ -69,9 +69,12 @@ jobs:
           Invoke-WebRequest "$B/src/uregexprw.pas" -OutFile "src/vendor/dc_src/uRegExprW.pas"
           Remove-Item -Force "src/vendor/dc_src/uregexprw.pas" -ErrorAction SilentlyContinue
 
-          Fetch "$B/src/platform/ukeyboard.pas" "src/vendor/dc_src/ukeyboard.pas"
           Copy-Item "src/vendor/dc_src/fmultirename.lfm" "src/fMultiRename.lfm" -Force
 
+      - name: Compile manifest resource
+        shell: bash
+        run: windres multirename.rc -O coff -o multirename.res
+        
       - name: Install DC packages
         run: |
           lazbuild src\vendor\doublecmd\doublecmd_common.lpk
@@ -120,15 +123,13 @@ jobs:
                    fselecttextrange.pas fselecttextrange.lfm \
                    fselectpathrange.pas fselectpathrange.lfm \
                    fsortanything.pas fsortanything.lfm \
-                   uregexpra.pas uformcommands.pas uhotkeymanager.pas \
-                   uconvencoding.pas udebug.pas; do
+                   uregexpra.pas uformcommands.pas uconvencoding.pas; do
             fetch "$B/src/$f" "src/vendor/dc_src/$f"
           done
           # 无条件覆盖下载为大写文件名，并删除小写版本
           mkdir -p src/vendor/dc_src
           curl -fsSL "$B/src/uregexprw.pas" -o src/vendor/dc_src/uRegExprW.pas
           rm -f src/vendor/dc_src/uregexprw.pas
-          fetch "$B/src/platform/ukeyboard.pas" src/vendor/dc_src/ukeyboard.pas
           cp -f src/vendor/dc_src/fmultirename.lfm src/fMultiRename.lfm
 
           fetch "$B/components/doublecmd/iconvenc/dc_iconvenc_dyn.pas" \
@@ -182,15 +183,13 @@ jobs:
                    fselecttextrange.pas fselecttextrange.lfm \
                    fselectpathrange.pas fselectpathrange.lfm \
                    fsortanything.pas fsortanything.lfm \
-                   uregexpra.pas uformcommands.pas uhotkeymanager.pas \
-                   uconvencoding.pas udebug.pas; do
+                   uregexpra.pas uformcommands.pas uconvencoding.pas; do
             fetch "$B/src/$f" "src/vendor/dc_src/$f"
           done
           # 无条件覆盖下载为大写文件名，并删除小写版本
           mkdir -p src/vendor/dc_src
           curl -fsSL "$B/src/uregexprw.pas" -o src/vendor/dc_src/uRegExprW.pas
           rm -f src/vendor/dc_src/uregexprw.pas
-          fetch "$B/src/platform/ukeyboard.pas" src/vendor/dc_src/ukeyboard.pas
           cp -f src/vendor/dc_src/fmultirename.lfm src/fMultiRename.lfm
 
           fetch "$B/components/doublecmd/iconvenc/dc_iconvenc_dyn.pas" \
@@ -210,27 +209,3 @@ jobs:
         with:
           name: multirename-macos-x64
           path: multirename
-
-  release:
-    name: Create Release
-    needs: [build-windows, build-linux, build-macos]
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v')
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/download-artifact@v4
-
-      - name: Package
-        run: |
-          zip multirename-windows-x64.zip  multirename-windows-x64/multirename.exe
-          tar czf multirename-linux-x64.tar.gz multirename-linux-x64/multirename
-          zip multirename-macos-x64.zip    multirename-macos-x64/multirename
-
-      - uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            multirename-windows-x64.zip
-            multirename-linux-x64.tar.gz
-            multirename-macos-x64.zip
-          generate_release_notes: true
