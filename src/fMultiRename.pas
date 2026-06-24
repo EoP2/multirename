@@ -325,7 +325,6 @@ type
     procedure cm_LoadNamesFromClipboard(const {%H-}Params: array of string);
     procedure cm_EditNames(const {%H-}Params: array of string);
     procedure cm_EditNewNames(const {%H-}Params: array of string);
-    procedure cm_Config(const {%H-}Params: array of string);
     procedure cm_AddFiles(const {%H-}Params: array of string);
     procedure cm_Rename(const {%H-}Params: array of string);
     procedure cm_Close(const {%H-}Params: array of string);
@@ -2180,13 +2179,6 @@ begin
   finally
     AFileList.Free;
   end;
-end;
-
-{ TfrmMultiRename.cm_Config }
-procedure TfrmMultiRename.cm_Config(const {%H-}Params: array of string);
-begin
-  // [独立版] 配置窗口待实现，暂时弹提示
-  MessageDlg(rsMulRenConfigNotImpl, mtInformation, [mbOK], 0);
 end;
 
 { TfrmMultiRename.cm_AddFiles }

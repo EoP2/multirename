@@ -18,7 +18,6 @@ const
   rsMulRenCounter           = '计数器';
   rsMulRenDate              = '日期';
   rsMulRenTime              = '时间';
-  rsMulRenPlugins           = '插件';   // 独立版不显示此菜单，保留常量避免编译报错
   rsMulRenViewLog           = '查看日志';
   rsMulRenSelectFile        = '选择文件';
 
@@ -76,7 +75,6 @@ const
   rsMulRenEnterValueForVar          = '为变量 [V:%s] 输入值';
   rsMulRenDefineVariableName        = '定义变量名称';
   rsMulRenDefineVariableValue       = '定义变量值';
-  rsMulRenConfigNotImpl             = '配置功能待实现';
 
   // 错误消息（来自 uLng）
   rsMsgErrRegExpSyntax    = '正则表达式语法错误：%s';
