@@ -1,4 +1,4 @@
-name: 3
+name: Build MultiRename
 
 on:
   workflow_dispatch:
@@ -90,7 +90,11 @@ jobs:
 
   build-linux:
     name: Linux x86_64 (GTK2)
-    runs-on: ubuntu-22.04
+    # ubuntu-22.04 apt 源自带 Lazarus 2.2.0，其 TCustomSpeedButton 还没有 Alignment 属性，
+    # 而 doublecmd master 分支的 KASToolBar/kastoolbar.pas 已经在用 Self.Alignment，
+    # 编译到这里会报 "identifier idents no member Alignment"。
+    # ubuntu-24.04 apt 自带 Lazarus 3.0，已包含该属性，故升级运行环境。
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
@@ -160,4 +164,3 @@ jobs:
           name: multirename-linux-x64
           path: multirename
 
- 
