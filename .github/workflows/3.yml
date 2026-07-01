@@ -112,6 +112,16 @@ jobs:
             fetch "$B/components/doublecmd/$f" "src/vendor/doublecmd/$f"
           done
 
+          # 以下 4 个文件是 doublecmd 在 UNIX/Linux 分支下的隐藏依赖，原抓取列表遗漏，
+          # 会依次导致 "Cannot open include file" / "Can't find unit" 编译错误：
+          #   dcconvertencoding.pas 通过 {$I dcconvertencoding.inc} 引入前者（UNIX 分支）
+          #   dcosutils.pas 在 UNIX 分支 uses DCUnix；dcunix.pas 又通过 {$I dclinuxmagic.inc} 引入该文件（仅 LINUX 分支）
+          #   dcosutils.pas 在 LINUX 分支额外 uses DCLinux
+          fetch "$B/components/doublecmd/dcconvertencoding.inc" src/vendor/doublecmd/dcconvertencoding.inc
+          fetch "$B/components/doublecmd/dcunix.pas" src/vendor/doublecmd/dcunix.pas
+          fetch "$B/components/doublecmd/dclinuxmagic.inc" src/vendor/doublecmd/dclinuxmagic.inc
+          fetch "$B/components/doublecmd/dclinux.pas" src/vendor/doublecmd/dclinux.pas
+
           fetch "$B/components/KASToolBar/kascomp.lpk" src/vendor/KASToolBar/kascomp.lpk
           for f in kasbutton.pas kastoolpanel.pas kastoolbar.pas kasprogressbar.pas dwtaskbarlist.pas \
                    kaspathedit.pas kastoolitems.pas kascombobox.pas kascdedit.pas \
@@ -150,62 +160,4 @@ jobs:
           name: multirename-linux-x64
           path: multirename
 
-  build-macos:
-    name: macOS x86_64 (Cocoa)
-    runs-on: macos-13
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Lazarus
-        run: brew install fpc lazarus
-
-      - name: Prepare vendor
-        run: |
-          B=$DC_BASE
-          fetch() { [ -f "$2" ] || { mkdir -p "$(dirname "$2")"; curl -fsSL "$1" -o "$2"; }; }
-
-          fetch "$B/components/doublecmd/doublecmd_common.lpk" src/vendor/doublecmd/doublecmd_common.lpk
-          for f in dcclassesutf8.pas dcosutils.pas dcstrutils.pas dcbasictypes.pas \
-                   dcfileattributes.pas dcconvertencoding.pas dcdatetimeutils.pas dcxmlconfig.pas \
-                   dcprocessutf8.pas dcunicodeutils.pas dcstringhashlistutf8.pas \
-                   dcjsonconfig.pas dcclasses.pas dcntfslinks.pas dcwindows.pas; do
-            fetch "$B/components/doublecmd/$f" "src/vendor/doublecmd/$f"
-          done
-
-          fetch "$B/components/KASToolBar/kascomp.lpk" src/vendor/KASToolBar/kascomp.lpk
-          for f in kasbutton.pas kastoolpanel.pas kastoolbar.pas kasprogressbar.pas dwtaskbarlist.pas \
-                   kaspathedit.pas kastoolitems.pas kascombobox.pas kascdedit.pas \
-                   kasstatusbar.pas kasbuttonpanel.pas kascomctrls.pas kascontrols.pas; do
-            fetch "$B/components/KASToolBar/$f" "src/vendor/KASToolBar/$f"
-          done
-
-          for f in fmultirename.lfm fmultirenamewait.pas fmultirenamewait.lfm \
-                   fselecttextrange.pas fselecttextrange.lfm \
-                   fselectpathrange.pas fselectpathrange.lfm \
-                   fsortanything.pas fsortanything.lfm \
-                   uregexpra.pas uformcommands.pas uconvencoding.pas; do
-            fetch "$B/src/$f" "src/vendor/dc_src/$f"
-          done
-          # 无条件覆盖下载为大写文件名，并删除小写版本
-          mkdir -p src/vendor/dc_src
-          curl -fsSL "$B/src/uregexprw.pas" -o src/vendor/dc_src/uRegExprW.pas
-          rm -f src/vendor/dc_src/uregexprw.pas
-          cp -f src/vendor/dc_src/fmultirename.lfm src/fMultiRename.lfm
-
-          fetch "$B/components/doublecmd/iconvenc/dc_iconvenc_dyn.pas" \
-            src/vendor/doublecmd/iconvenc/dc_iconvenc_dyn.pas
-          fetch "$B/components/doublecmd/iconvenc/dc_iconvert.inc" \
-            src/vendor/doublecmd/iconvenc/dc_iconvert.inc
-
-      - name: Install DC packages
-        run: |
-          lazbuild src/vendor/doublecmd/doublecmd_common.lpk
-          lazbuild src/vendor/KASToolBar/kascomp.lpk
-
-      - name: Build
-        run: lazbuild multirename.lpi --bm=Release --widgetset=cocoa
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: multirename-macos-x64
-          path: multirename
+ 
