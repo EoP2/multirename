@@ -250,6 +250,9 @@ type
   private
     FCommands: TFormCommands;
     FActuallyRenamingFile: boolean;
+    FRenameCooldownTimer: TTimer;
+    FRenameCooldownActive: boolean;
+    procedure RenameCooldownTimerTimer(Sender: TObject);
     FSourceRow: integer;
     FMoveRow: boolean;
     // [独立版] 去掉 FFileSource: IFileSource 和 FPluginDispatcher
@@ -393,6 +396,9 @@ const
   CONFIG_SAVED = True;
 
   NBMAXHELPERS = 30;
+
+  // 重命名成功后,"重命名"按钮保持禁用的冷却时长(毫秒),用于防止误连点
+  RENAME_COOLDOWN_MS = 2000;
 
 var
   //Sequence of operation to add a new mask:
@@ -653,6 +659,21 @@ begin
   // OS 级文件拖拽
   Self.AllowDropFiles := True;
   Self.OnDropFiles    := @FormDropFiles;
+
+  // 重命名冷却计时器：重命名成功后禁用一段时间，防止误连点重复套用规则
+  FRenameCooldownTimer := TTimer.Create(Self);
+  FRenameCooldownTimer.Enabled := False;
+  FRenameCooldownTimer.Interval := RENAME_COOLDOWN_MS;
+  FRenameCooldownTimer.OnTimer := @RenameCooldownTimerTimer;
+end;
+
+{ TfrmMultiRename.RenameCooldownTimerTimer }
+procedure TfrmMultiRename.RenameCooldownTimerTimer(Sender: TObject);
+begin
+  // 冷却时间到：停止计时器、解除冷却标记，再按当前命名规则是否有效刷新一次按钮状态
+  FRenameCooldownTimer.Enabled := False;
+  FRenameCooldownActive := False;
+  StringGridTopLeftChanged(StringGrid);
 end;
 
 { TfrmMultiRename.FormCloseQuery }
@@ -1882,7 +1903,8 @@ begin
     Result := sTmpName + sTmpExt;
   end;
 
-  actRename.Enabled := not bError;
+  // 命名规则本身有效,且不在"刚重命名完"的冷却期内,才允许再次点击
+  actRename.Enabled := (not bError) and (not FRenameCooldownActive);
 
   if bError then
   begin
@@ -2310,6 +2332,7 @@ var
   FailCount: integer;
   FailMessages: TStringList;
 begin
+  actRename.Enabled := False;
   FActuallyRenamingFile := True;
   try
     if cbLog.Checked then
@@ -2489,6 +2512,11 @@ begin
   finally
     FActuallyRenamingFile := False;
   end;
+
+  // 进入冷却期：接下来 RENAME_COOLDOWN_MS 毫秒内,即使命名规则本身有效,按钮也保持禁用
+  FRenameCooldownActive := True;
+  FRenameCooldownTimer.Enabled := False;
+  FRenameCooldownTimer.Enabled := True;
 
   StringGridTopLeftChanged(StringGrid);
 end;
