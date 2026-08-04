@@ -672,6 +672,7 @@ end;
 { TfrmMultiRename.RenameCooldownTimerTimer }
 procedure TfrmMultiRename.RenameCooldownTimerTimer(Sender: TObject);
 begin
+  WriteLn(FormatDateTime('hh:nn:ss.zzz', Now), '  [DEBUG] RenameCooldownTimerTimer 触发'); Flush(Output);
   // 冷却时间到：停止计时器、解除冷却标记，再按当前命名规则是否有效刷新一次按钮状态
   FRenameCooldownTimer.Enabled := False;
   FRenameCooldownActive := False;
@@ -688,6 +689,8 @@ var
   bCanRename: boolean;
 begin
   bCanRename := (not FLastRuleError) and (not FRenameCooldownActive);
+  WriteLn(FormatDateTime('hh:nn:ss.zzz', Now), '  [DEBUG] UpdateRenameButtonState: old=', actRename.Enabled,
+          ' new=', bCanRename, ' 真的改了=', (actRename.Enabled <> bCanRename)); Flush(Output);
   if actRename.Enabled <> bCanRename then
     actRename.Enabled := bCanRename;
 
@@ -851,6 +854,7 @@ procedure TfrmMultiRename.StringGridTopLeftChanged(Sender: TObject);
 var
   I, iRowCount: integer;
 begin
+  WriteLn(FormatDateTime('hh:nn:ss.zzz', Now), '  [DEBUG] StringGridTopLeftChanged 被调用'); Flush(Output);
   iRowCount := StringGrid.TopRow + StringGrid.VisibleRowCount;
   if iRowCount > FFiles.Count then
     iRowCount := FFiles.Count;
