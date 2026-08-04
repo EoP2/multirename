@@ -273,6 +273,7 @@ type
     property Commands: TFormCommands read FCommands implements IFormCommands;
     procedure RenameCooldownTimerTimer(Sender: TObject);
     procedure UpdateRenameButtonState;
+    procedure DebugLog(const AMsg: string);
     procedure SetConfigurationState(bConfigurationSaved: boolean);
     function GetPresetNameForCommand(const Params: array of string): string;
     function isOkToLosePresetModification: boolean;
@@ -672,11 +673,36 @@ end;
 { TfrmMultiRename.RenameCooldownTimerTimer }
 procedure TfrmMultiRename.RenameCooldownTimerTimer(Sender: TObject);
 begin
-  WriteLn(FormatDateTime('hh:nn:ss.zzz', Now), '  [DEBUG] RenameCooldownTimerTimer 触发'); Flush(Output);
+  DebugLog('RenameCooldownTimerTimer 触发');
   // 冷却时间到：停止计时器、解除冷却标记，再按当前命名规则是否有效刷新一次按钮状态
   FRenameCooldownTimer.Enabled := False;
   FRenameCooldownActive := False;
   StringGridTopLeftChanged(StringGrid);
+end;
+
+{ TfrmMultiRename.DebugLog }
+// 临时调试用：写入 exe 同目录下的 multirename_debug.log，不依赖控制台，
+// 双击直接运行也能看到输出。排查完记得把这个函数和所有调用点删掉。
+procedure TfrmMultiRename.DebugLog(const AMsg: string);
+var
+  F: TextFile;
+  sLogPath: string;
+begin
+  sLogPath := ExtractFilePath(ParamStr(0)) + 'multirename_debug.log';
+  AssignFile(F, sLogPath);
+  try
+    if FileExists(sLogPath) then
+      Append(F)
+    else
+      Rewrite(F);
+    try
+      WriteLn(F, FormatDateTime('hh:nn:ss.zzz', Now), '  ', AMsg);
+    finally
+      CloseFile(F);
+    end;
+  except
+    // 日志失败也不能把程序搞崩，静默忽略
+  end;
 end;
 
 { TfrmMultiRename.UpdateRenameButtonState }
@@ -689,8 +715,9 @@ var
   bCanRename: boolean;
 begin
   bCanRename := (not FLastRuleError) and (not FRenameCooldownActive);
-  WriteLn(FormatDateTime('hh:nn:ss.zzz', Now), '  [DEBUG] UpdateRenameButtonState: old=', actRename.Enabled,
-          ' new=', bCanRename, ' 真的改了=', (actRename.Enabled <> bCanRename)); Flush(Output);
+  DebugLog('UpdateRenameButtonState: old=' + BoolToStr(actRename.Enabled, True) +
+           ' new=' + BoolToStr(bCanRename, True) +
+           ' 真的改了=' + BoolToStr(actRename.Enabled <> bCanRename, True));
   if actRename.Enabled <> bCanRename then
     actRename.Enabled := bCanRename;
 
@@ -854,7 +881,7 @@ procedure TfrmMultiRename.StringGridTopLeftChanged(Sender: TObject);
 var
   I, iRowCount: integer;
 begin
-  WriteLn(FormatDateTime('hh:nn:ss.zzz', Now), '  [DEBUG] StringGridTopLeftChanged 被调用'); Flush(Output);
+  DebugLog('StringGridTopLeftChanged 被调用');
   iRowCount := StringGrid.TopRow + StringGrid.VisibleRowCount;
   if iRowCount > FFiles.Count then
     iRowCount := FFiles.Count;
