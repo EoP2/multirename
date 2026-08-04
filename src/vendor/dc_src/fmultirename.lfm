@@ -1035,7 +1035,7 @@ object frmMultiRename: TfrmMultiRename
     end
     object actRename: TAction
       Category = 'Generic'
-      Caption = '重命名(&S)'
+      Caption = '重命名'
       OnExecute = actExecute
     end
     object actClose: TAction

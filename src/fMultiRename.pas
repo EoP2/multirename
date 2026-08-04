@@ -723,14 +723,8 @@ begin
       FFiles.Delete(DestRow - 1);
       StringGrid.RowCount:= StringGrid.RowCount - 1;
 
-      if FFiles.Count = 0 then
-      begin
-        OnCloseQuery:= nil;
-        Close;
-      end
-      else begin
-        StringGridTopLeftChanged(StringGrid);
-      end;
+      StringGridTopLeftChanged(StringGrid);
+      actRename.Enabled := actRename.Enabled and (FFiles.Count > 0);
     end;
   end;
 
