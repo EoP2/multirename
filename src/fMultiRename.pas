@@ -252,6 +252,7 @@ type
     FActuallyRenamingFile: boolean;
     FRenameCooldownTimer: TTimer;
     FRenameCooldownActive: boolean;
+    FLastRuleError: boolean;
     FSourceRow: integer;
     FMoveRow: boolean;
     // [独立版] 去掉 FFileSource: IFileSource 和 FPluginDispatcher
@@ -271,6 +272,7 @@ type
     FLog: TStringList;  // 替代 TStringList（方法完全兼容）
     property Commands: TFormCommands read FCommands implements IFormCommands;
     procedure RenameCooldownTimerTimer(Sender: TObject);
+    procedure UpdateRenameButtonState;
     procedure SetConfigurationState(bConfigurationSaved: boolean);
     function GetPresetNameForCommand(const Params: array of string): string;
     function isOkToLosePresetModification: boolean;
@@ -676,6 +678,37 @@ begin
   StringGridTopLeftChanged(StringGrid);
 end;
 
+{ TfrmMultiRename.UpdateRenameButtonState }
+// 根据"最近一次算出的命名规则是否合法"(FLastRuleError) + 是否处于冷却期，
+// 统一刷新一次"重命名"按钮和查找框的状态。
+// 有意只在这一处赋值（而不是在 FreshText 里逐行赋值），避免 StringGridTopLeftChanged
+// 按可见行数循环调用 FreshText 时，同一属性被反复 set 导致按钮闪烁。
+procedure TfrmMultiRename.UpdateRenameButtonState;
+var
+  bCanRename: boolean;
+begin
+  bCanRename := (not FLastRuleError) and (not FRenameCooldownActive);
+  if actRename.Enabled <> bCanRename then
+    actRename.Enabled := bCanRename;
+
+  if FLastRuleError then
+  begin
+    if edFind.Color <> clRed then
+    begin
+      edFind.Color := clRed;
+      edFind.Font.Color := clWhite;
+    end;
+  end
+  else
+  begin
+    if edFind.Color <> clDefault then
+    begin
+      edFind.Color := clDefault;
+      edFind.Font.Color := clDefault;
+    end;
+  end;
+end;
+
 { TfrmMultiRename.FormCloseQuery }
 procedure TfrmMultiRename.FormCloseQuery(Sender: TObject; var CanClose: boolean);
 begin
@@ -827,6 +860,7 @@ begin
     StringGrid.Cells[1, I] := FreshText(I - 1);
     StringGrid.Cells[2, I] := FFiles[I - 1].Path;
   end;
+  UpdateRenameButtonState;
 end;
 
 { TfrmMultiRename.cbNameStyleChange }
@@ -1903,19 +1937,9 @@ begin
     Result := sTmpName + sTmpExt;
   end;
 
-  // 命名规则本身有效,且不在"刚重命名完"的冷却期内,才允许再次点击
-  actRename.Enabled := (not bError) and (not FRenameCooldownActive);
-
-  if bError then
-  begin
-    edFind.Color := clRed;
-    edFind.Font.Color := clWhite;
-  end
-  else
-  begin
-    edFind.Color := clDefault;
-    edFind.Font.Color := clDefault;
-  end;
+  // 只记录本次判定结果；真正落到按钮/输入框状态的赋值统一收敛到 UpdateRenameButtonState，
+  // 避免 FreshText 被 StringGridTopLeftChanged 逐行调用时，同一属性被反复 set 导致闪烁。
+  FLastRuleError := bError;
 end;
 
 { TfrmMultiRename.sHandleFormatString }
