@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  DC_BASE: https://raw.githubusercontent.com/doublecmd/doublecmd/master
+  DC_BASE: https://raw.githubusercontent.com/EoP2/doublecmd/master
 
 jobs:
 
