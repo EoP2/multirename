@@ -252,7 +252,6 @@ type
     FActuallyRenamingFile: boolean;
     FRenameCooldownTimer: TTimer;
     FRenameCooldownActive: boolean;
-    procedure RenameCooldownTimerTimer(Sender: TObject);
     FSourceRow: integer;
     FMoveRow: boolean;
     // [独立版] 去掉 FFileSource: IFileSource 和 FPluginDispatcher
@@ -271,6 +270,7 @@ type
     FsRememberRenameLogFilename: string;
     FLog: TStringList;  // 替代 TStringList（方法完全兼容）
     property Commands: TFormCommands read FCommands implements IFormCommands;
+    procedure RenameCooldownTimerTimer(Sender: TObject);
     procedure SetConfigurationState(bConfigurationSaved: boolean);
     function GetPresetNameForCommand(const Params: array of string): string;
     function isOkToLosePresetModification: boolean;
