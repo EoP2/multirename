@@ -253,6 +253,7 @@ type
     FRenameCooldownTimer: TTimer;
     FRenameCooldownActive: boolean;
     FLastRuleError: boolean;
+    FOriginalRenameCaption: string;
     FSourceRow: integer;
     FMoveRow: boolean;
     // [独立版] 去掉 FFileSource: IFileSource 和 FPluginDispatcher
@@ -401,7 +402,7 @@ const
   NBMAXHELPERS = 30;
 
   // 重命名成功后,"重命名"按钮保持禁用的冷却时长(毫秒),用于防止误连点
-  RENAME_COOLDOWN_MS = 1000;
+  RENAME_COOLDOWN_MS = 2000;
 
 var
   //Sequence of operation to add a new mask:
@@ -664,6 +665,7 @@ begin
   Self.OnDropFiles    := @FormDropFiles;
 
   // 重命名冷却计时器：重命名成功后禁用一段时间，防止误连点重复套用规则
+  FOriginalRenameCaption := actRename.Caption;
   FRenameCooldownTimer := TTimer.Create(Self);
   FRenameCooldownTimer.Enabled := False;
   FRenameCooldownTimer.Interval := RENAME_COOLDOWN_MS;
@@ -720,6 +722,23 @@ begin
            ' 真的改了=' + BoolToStr(actRename.Enabled <> bCanRename, True));
   if actRename.Enabled <> bCanRename then
     actRename.Enabled := bCanRename;
+
+  // 冷却期内（刚重命名完）按钮文字显示"完成"，解锁后换回原来的"重命名"
+  // FOriginalRenameCaption 在构造函数里才会被赋值；如果这个函数在那之前就被
+  // (比如表格初始化时的 OnResize) 提前触发，此时它还是空字符串，不能拿去覆盖 Caption。
+  if FOriginalRenameCaption <> '' then
+  begin
+    if FRenameCooldownActive then
+    begin
+      if actRename.Caption <> rsMulRenDone then
+        actRename.Caption := rsMulRenDone;
+    end
+    else
+    begin
+      if actRename.Caption <> FOriginalRenameCaption then
+        actRename.Caption := FOriginalRenameCaption;
+    end;
+  end;
 
   if FLastRuleError then
   begin
