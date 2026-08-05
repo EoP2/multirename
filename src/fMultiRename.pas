@@ -401,7 +401,7 @@ const
   NBMAXHELPERS = 30;
 
   // 重命名成功后,"重命名"按钮保持禁用的冷却时长(毫秒),用于防止误连点
-  RENAME_COOLDOWN_MS = 0;
+  RENAME_COOLDOWN_MS = 2;
 
 var
   //Sequence of operation to add a new mask:
