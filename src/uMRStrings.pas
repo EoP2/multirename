@@ -19,7 +19,7 @@ const
   rsMulRenDate              = '日期';
   rsMulRenTime              = '时间';
   rsMulRenViewLog           = '查看日志';
-  rsMulRenDone              = '已完成';
+  rsMulRenDone              = '完成';
   rsMulRenSelectFile        = '选择文件';
 
   // Mask token 描述（菜单提示）

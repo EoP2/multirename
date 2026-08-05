@@ -254,7 +254,6 @@ type
     FRenameCooldownActive: boolean;
     FLastRuleError: boolean;
     FOriginalRenameCaption: string;
-    FLastFailedIndices: array of boolean;  // 上次重命名，FFiles[i] 对应的文件是否失败
     FSourceRow: integer;
     FMoveRow: boolean;
     // [独立版] 去掉 FFileSource: IFileSource 和 FPluginDispatcher
@@ -275,8 +274,6 @@ type
     property Commands: TFormCommands read FCommands implements IFormCommands;
     procedure RenameCooldownTimerTimer(Sender: TObject);
     procedure UpdateRenameButtonState;
-    procedure DebugLog(const AMsg: string);
-    procedure StringGridPrepareCanvas(Sender: TObject; aCol, aRow: Integer; aState: TGridDrawState);
     procedure SetConfigurationState(bConfigurationSaved: boolean);
     function GetPresetNameForCommand(const Params: array of string): string;
     function isOkToLosePresetModification: boolean;
@@ -667,10 +664,6 @@ begin
   Self.OnDropFiles    := @FormDropFiles;
 
   // 重命名冷却计时器：重命名成功后禁用一段时间，防止误连点重复套用规则
-  // btnRename 开双缓冲：Enabled 变化时 GTK 原生重绘(EnableWindow)和 LCL 的
-  // Invalidate 重绘是两条不同步的路径，没有双缓冲的话中间会露出擦除背景，
-  // 看起来就是"解锁时闪两下"。
-  btnRename.DoubleBuffered := True;
   FOriginalRenameCaption := actRename.Caption;
   FRenameCooldownTimer := TTimer.Create(Self);
   FRenameCooldownTimer.Enabled := False;
@@ -681,36 +674,10 @@ end;
 { TfrmMultiRename.RenameCooldownTimerTimer }
 procedure TfrmMultiRename.RenameCooldownTimerTimer(Sender: TObject);
 begin
-  DebugLog('RenameCooldownTimerTimer 触发');
   // 冷却时间到：停止计时器、解除冷却标记，再按当前命名规则是否有效刷新一次按钮状态
   FRenameCooldownTimer.Enabled := False;
   FRenameCooldownActive := False;
   StringGridTopLeftChanged(StringGrid);
-end;
-
-{ TfrmMultiRename.DebugLog }
-// 临时调试用：写入 exe 同目录下的 multirename_debug.log，不依赖控制台，
-// 双击直接运行也能看到输出。排查完记得把这个函数和所有调用点删掉。
-procedure TfrmMultiRename.DebugLog(const AMsg: string);
-var
-  F: TextFile;
-  sLogPath: string;
-begin
-  sLogPath := ExtractFilePath(ParamStr(0)) + 'multirename_debug.log';
-  AssignFile(F, sLogPath);
-  try
-    if FileExists(sLogPath) then
-      Append(F)
-    else
-      Rewrite(F);
-    try
-      WriteLn(F, FormatDateTime('hh:nn:ss.zzz', Now), '  ', AMsg);
-    finally
-      CloseFile(F);
-    end;
-  except
-    // 日志失败也不能把程序搞崩，静默忽略
-  end;
 end;
 
 { TfrmMultiRename.UpdateRenameButtonState }
@@ -723,9 +690,6 @@ var
   bCanRename: boolean;
 begin
   bCanRename := (not FLastRuleError) and (not FRenameCooldownActive);
-  DebugLog('UpdateRenameButtonState: old=' + BoolToStr(actRename.Enabled, True) +
-           ' new=' + BoolToStr(bCanRename, True) +
-           ' 真的改了=' + BoolToStr(actRename.Enabled <> bCanRename, True));
   if actRename.Enabled <> bCanRename then
     actRename.Enabled := bCanRename;
 
@@ -901,25 +865,11 @@ begin
   end;
 end;
 
-{ TfrmMultiRename.StringGridPrepareCanvas }
-// 把上次重命名失败的文件所在行加粗显示（整行，不分列）。
-// aRow 是网格行号，第 0 行是表头，对应 FFiles 下标要减 1。
-procedure TfrmMultiRename.StringGridPrepareCanvas(Sender: TObject; aCol,
-  aRow: Integer; aState: TGridDrawState);
-var
-  Idx: integer;
-begin
-  Idx := aRow - 1;
-  if (Idx >= 0) and (Idx < Length(FLastFailedIndices)) and FLastFailedIndices[Idx] then
-    StringGrid.Canvas.Font.Style := StringGrid.Canvas.Font.Style + [fsBold];
-end;
-
 { TfrmMultiRename.StringGridTopLeftChanged }
 procedure TfrmMultiRename.StringGridTopLeftChanged(Sender: TObject);
 var
   I, iRowCount: integer;
 begin
-  DebugLog('StringGridTopLeftChanged 被调用');
   iRowCount := StringGrid.TopRow + StringGrid.VisibleRowCount;
   if iRowCount > FFiles.Count then
     iRowCount := FFiles.Count;
@@ -2522,9 +2472,6 @@ begin
       // [独立版] 直接用 RenameFile 替代 IFileSource + OperationsManager
       FailCount := 0;
       FailMessages := TStringList.Create;
-      // 每次重命名开始前先清空上一次的失败标记，避免加粗残留到不相关的行
-      SetLength(FLastFailedIndices, 0);
-      SetLength(FLastFailedIndices, FFiles.Count);
       try
         for I := 0 to OldFiles.Count - 1 do
         begin
@@ -2560,11 +2507,6 @@ begin
             Inc(FailCount);
             FailMessages.Add(OldFiles[I].Name + ' -> ' + NewFiles[I].Name +
                              LineEnding + '  ' + SysErrorMessage(GetLastOSError));
-            // 标记这个文件在 FFiles 里的真实下标，跟上面改名成功时的两种下标换算方式保持一致
-            if I < OrigCount then
-              FLastFailedIndices[I] := True
-            else
-              FLastFailedIndices[PtrUInt(TempFiles.Objects[I - OrigCount])] := True;
             if cbLog.Checked then
               FLog.Add('FAILED  ' + LogName + ' -> ' + NewFiles[I].Name +
                        ' (' + SysErrorMessage(GetLastOSError) + ')');
@@ -2620,7 +2562,6 @@ begin
   FRenameCooldownTimer.Enabled := True;
 
   StringGridTopLeftChanged(StringGrid);
-  StringGrid.Invalidate;  // 确保失败行的加粗立刻重绘出来
 end;
 
 { TfrmMultiRename.cm_Close }
