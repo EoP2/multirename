@@ -64,7 +64,7 @@
         <PackageName Value="doublecmd_common"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="9">
+    <Units Count="8">
       <Unit0>
         <Filename Value="multirename.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -77,33 +77,29 @@
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="src/vendor/dc_src/fmultirename.lfm"/>
+        <Filename Value="src/uMRFile.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="src/uMRFile.pas"/>
+        <Filename Value="src/uMRConfig.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="src/uMRConfig.pas"/>
+        <Filename Value="src/uMRStrings.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="src/uMRStrings.pas"/>
+        <Filename Value="src/uMRUtils.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit5>
       <Unit6>
-        <Filename Value="src/uMRUtils.pas"/>
+        <Filename Value="src/fMultiRename.lfm"/>
         <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
-        <Filename Value="src/fMultiRename.lfm"/>
-        <IsPartOfProject Value="True"/>
-      </Unit7>
-      <Unit8>
         <Filename Value="src/uMRApp.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit8>
+      </Unit7>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
